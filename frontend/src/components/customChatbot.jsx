@@ -20,7 +20,7 @@ function customChatbot(props) {  const config = {
   const steps = [
      {
       id: "Greet",
-      message: "Hello, Welcome to our shop",
+      message: "Hello there, this is stonksman. How may I help you?",
       trigger: "Done"
      },
      {
