@@ -7,7 +7,6 @@
     "start": "nodemon server.js --exec babel-node --presets env",
     "release": "npm run clean && npm run build && npm run serve",
     "clean": "rm -rf dist && mkdir dist",
-    "build": "babel . -s -D -d dist --presets env --ignore node_modules",
     "serve": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,6 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.0"
   },
