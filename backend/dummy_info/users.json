@@ -1,0 +1,41 @@
+{
+		"user_id":1,
+		"user_name":"Brrr",
+		"phone_number": "9434241404",
+		"status": "logged in",
+		"password": "XD :V :3",
+		"email": "Brrr@gmail.com",
+		"kyc_status": "not done",
+		"kyc_details":{"pan": ""},
+		"orders":[{"order_id":1, "order_status": "successful", "product_id":[5,13,6], "units":[8,5,3]},
+						 {"order_id":2, "order_status": "cancelled", "product_id":[6,1], "units":[1,1]}
+					   ]
+}
+{
+		"user_id": 2,
+		"user_name": "Brrrrrrrrrrr",
+		"phone_number": "9898989898",
+		"status": "logged out",
+		"password": "Nyaaa",
+		"email": "Mew_nu@gmail.com",
+		"kyc_status": "not done",
+		"kyc_details":{"pan": "" },
+		"orders":[{"order_id":1, "order_status": "pending", "product_id":[2,3], "units":[5,1]},
+						 {"order_id":2, "order_status": "pending", "product_id":[7], "units":[6]},
+						 {"order_id":3, "order_status": "successful", "product_id":[11,7], "units": [2,8]},
+						 {"order_id":4, "order_status": "failed", "product_id":[3], "units":[10]}
+					   ]
+}
+{
+		"user_id": 3,
+		"user_name":"Br",
+		"phone_number": "65555666655",
+		"status": "logged out",
+		"password": "",
+		"email": "Br@gmail.com",
+		"kyc_status": "done",
+		"kyc_details":{"pan": "86tAe5tgy7797"},
+		"orders":[{"order_id":1,"order_status":"pending","product_id":[3,5,7],"units":[1,2,3]},
+						 {"order_id":2, "order_status": "failed","product_id":[10,4,12,13],"units": [1,2,2,8]}
+					   ]
+}

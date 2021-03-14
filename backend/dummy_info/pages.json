@@ -1,0 +1,196 @@
+{
+		"page_id": 1,
+		"page_name": "Stocks",
+		"products_listed":[1,2,3,4,5],
+		"subsections": [
+			{
+				"type": "Demat_account",
+				"questions":["How do I verify via Aadhaar (eSign)?","My Aadhaar is not linked to my mobile number. How do I open an account?","If I verify with TPIN, will it sell all my holdings?"],
+				"answers":["You can verify via Aadhaar by following these steps:\n1. Go to the verification screen by clicking on the button below2. Click on 'GO TO AADHAAR ESIGN'\n3. You will receive a security code on your registered mobile number on Groww\n4. Enter the security code and press 'SUBMIT'\n5. Click on 'Sign Now'\n6. Tick the box beside 'I hereby authorize...'\n7. Enter your Aadhaar number\n8. Press 'Send OTP'\n9. Enter OTP you receive on your Aadhaar-linked mobile number\n10. Click on 'Verify OTP'\n\nDone!",
+									"There's always a way! You can link your mobile number to your Aadhaar. Simply, follow the steps given in our blog. You can download the physical account opening form, print and sign it, and courier the signed form to the address mentioned in the form. Click on the button below to follow the blog.",
+									"No. Once you verify via TPIN by CDSL, it only verifies your existing holdings so that you can place your sell order whenever you want in a secure manner. \nThe approval is valid for 1 day for your Demat account after which you will require to verify again.\nWe assure you that no sell order will be placed without your approval."],
+				"button_name":["Unlock stocks","Link Adhaar","Verify Holdings"],
+				"trigger":["https://groww.in/onboarding/stocks","https://groww.in/blog/how-to-link-aadhar-with-mobile-number-online/","https://groww.in/cdslauth"]
+			},
+			{
+				"type": "IPO",
+				"questions":["What is IPO?","How to invest in IPO?","What is lot size and cutoff price in IPO?","How many bids can I place?"],
+				"answers":["Initial Public Offering (IPO) is the process in which a private company becomes public by selling a portion of its stake to investors. \nAn IPO is generally initiated to infuse new equity capital into the firm, to facilitate easy trading of the existing assets, to raise capital for the future, or to monetize the investments made by existing stakeholders.\nKnow more about IPOs in our blog by pressing the button below.",
+									"Here are the steps to apply for IPO: \n 1. Press the 'INVEST IN IPO' button below.\n2. You will see the list of open IPOs. Press the 'APPLY' button beside the IPO name you want to apply for. \n3. In the box on the right side, enter the number of shares you want to apply for. \n4. Press the 'CONTINUE' button.\n5. Enter your UPI ID. You will get this from your UPI app (Google Pay, PhonePe, etc). \n6. Press the 'CONTINUE' button.\n7. You will be able to see a timeline of your IPO application process and the tentative allotment date.\n8. Within 24 hours, you will get a UPI mandate request on your UPI app. Approve it.  \n Done!",
+									"It is the minimum number of shares that an investor has to apply for. This is known as the IPO bid lot or market lot size or minimum order quantity. \nExample: IPO of company ABC has a market lot size of 100 shares. So an investor can apply for 100 shares, or 200 shares, or 300 shares, and so on.\nThe cutoff price is the maximum price for a particular IPO. Eg. price range for ABC company's IPO is Rs 100-105 then Rs 105 is the cutoff price.",
+									"You can place a maximum of 3 bids"],
+				"button_name":["Read More","Invest in IPO","",""],
+				"trigger":["https://groww.in/p/initial-public-offering/","https://groww.in/ipo","",""]
+			},
+			{
+				"type": "Margin",
+				"questions":["What is stocks margin?","Why is stocks margin used in Groww balance?","What are intraday square off charges?"],
+				"answers":["Margin is the money you borrow from Groww (broker) to trade in stocks.\nWith the margin feature on Groww, you are able to buy stocks for as low as 15% of the total value of the stock.",
+									"This is the margin that you have already used for your trading.\nAfter settlement, you will be able to see this in the evening as 'Paid for Stock' or ' Received from Stock'.",
+									"In intraday trading, each open position should be squared off by 3:10 PM. \nIf it’s an auto square-off, there will be a charge of Rs.50 + GST per position. \nHence, we recommend planning the square-off for your open intraday positions well in advance."],
+				"button_name":["","","Pricing Page"],
+				"trigger":["","","https://groww.in/pricing/stocks"]
+			},
+			{
+				"type": "P&L Reports",
+				"questions":["How can I access my stocks P&L Report?","I did not get my report till now. when will I get it?","What is the password to open my report?"],
+				"answers":["You can request your stocks P&amp;L report in the Reports section. \nPress the button below to go to the Reports section. ",
+									"It takes up to 24 hours for the report to be generated. \nIf it has been more than 24 hours, please raise a ticket and reach out to us.",
+									"The password to open your report is your PAN in capital letters."],
+				"button_name":["Reports","",""],
+				"trigger":["https://groww.in/user/profile/report","",""]
+			}
+		]	
+}
+{
+		"page_id": 2,
+		"page_name":"Mutual Funds",
+		"products_listed":[6,7,8,9],
+		"subsections":[
+			{
+				"type": "My SIP-s",
+				"questions":["How to start a SIP on Groww?","How do monthly installments get paid automatically?","How to change SIP date?"],
+				"answers":["1. Click 'Explore Mutual Funds' button below \n2. Search or choose a mutual fund \n3. Choose 'Monthly SIP' \n4. Enter the amount to invest \n5. Pay via UPI/Netbanking/NEFT \n6. Don't forget to add Biller/OTM/AutoPay for future installments.\nTo learn more about choosing mutual funds, press button below. ",
+									"You have to set up AutoPay. \nAutoPay invests your money every month from your bank account to the mutual fund. When you set up AutoPay, you basically tell your bank to allow the monthly transaction to happen. \n\nOnly the chosen SIP amount can be debited from your bank account, not a higher amount.  \nThere are a number of ways to set up AutoPay:\n-Biller\n-OTM\n-Groww Mandate .",
+									"To change the SIP date: \n-Cancel the existing SIP. \n-Start a new SIP with the new date."
+									],
+				"button_name":["Read Blog","",""],
+				"trigger":["https://groww.in/blog/how-to-choose-mutual-funds-in-india/","",""]
+			},
+			{
+				"type": "My Investments",
+				"questions":["My mutual funds NAV is not updated","How do I import my external mutual fund investments?","My external investments were not imported properly."],
+				"answers":["Mutual fund NAVs based on the value on the previous date. Example, on 3rd May, the latest NAV value will be of 2nd May. NAV is updated every morning from Tuesday to Saturday. NAV is updated every morning from Tuesday to Saturday. \nIf you are sure your mutual fund's NAV is not being updated, please contact us.",
+								"1. Tap on the 'IMPORT' button below. 2. Now, tap on 'Connect with Google'.&nbsp; 3. Choose the email ID in which you receive statements of your external mutual funds.&nbsp; 4. Continue on with the next steps. Give permission to Groww to read your email.&nbsp; In 1-2 days, you will be able to see your external investments on the dashboard. Your imported investments will be updated every 30 days.&nbsp; Note: Groww does not have access to any of your emails except the ones that come from donotreply@camsonline.com and samfS@kfintech.com.&nbsp; Groww can only read messages that are from CAMS and Karvy so as to be able to read the mutual funds' statements",
+								"Please contact us. We will resolve this issue as soon as possible."],
+				"button_name":["Raise a Ticket","Import","Contact us"],
+				"trigger":["https://groww.in/user/help/tickets/create","https://groww.in/track/request","https://groww.in/user/help/tickets/create"]
+			},
+			{
+				"type": "Import Funds",
+				"questions":["What can I do with my external funds?","What is Auto-Import via Gmail. Is it safe?","Can I import someone else's investments?"],
+				"answers":["Once your external funds have been imported to Groww, you can easily invest more, redeem, and start SIP in that fund. If your external funds are regular plan funds, you can even switch them to direct plan (zero-commission).",
+									"Auto-Import via Gmail allows us to automatically import your external mutual funds. You do not have send us anything. It is safe and Groww does not have access to any of your emails except the ones that come from donotreply@camsonline.com and samfS@kfintech.com. Groww can only read messages that are from CAMS and Karvy so as to be able to read the mutual funds' statements.",
+									"No, you cannot import someone else's investments. To be able to import, the PAN number in your Groww account and the funds you are trying to import has to be the same."],
+				"button_name":["","",""],
+				"trigger":["","",""]
+			}
+		]
+}
+{
+		"page_id": 3,
+		"page_name": "Gold",
+		"products_listed": [],
+		"subsections": [
+			{
+				"type": "About Digital Gold",
+				"questions": ["What is digital gold?","What is Gold Locker?","What is live Gold price?","What is the eligibility criteria for buying Digital Gold on Groww?"],
+				"answers":["Digital Gold is a convenient and cost-effective way of purchasing gold online.You can buy, sell, and accumulate gold of 99.9% purity, even in, fractions anytime using Groww. ",
+									"Gold Locker is a digital version of your holdings, wherein you can view your Digital Gold transactions.",
+									"The live price shown is the current market price of gold, exclusive of taxes. This price may change throughout the day.\nThe buy and sell prices you see are on the basis of wholesale prices in the spot market. It does not include taxes.\nPress the button below to go to the gold page and see the live price.",
+									"Any resident Indian with verified KYC is eligible for purchasing Digital Gold on Groww."],
+				"button_name":["","","Gold",""],
+				"trigger":["","","https://groww.in/dashboard/explore/gold",""]
+			},
+			{
+				"type": "Buying Gold",
+				"questions":["How do I buy digital Gold on Groww?","How often does the live price change?","My gold order failed. When will I get my refund?"],
+				"answers":["1. Enter the amount: You can input your desired purchase amount in rupees or grams of gold.\n2. Buy in one-click: Review your order to make quick payment within the 5-minute price window.\n3. Secured and insured: Your gold locker will be updated, where you can view your purchased Digital Gold holdings.",
+									"The live price may change throughout the day. However, once you begin a purchase/sell transaction, the live price shown will be locked in for 5 minutes.",
+									"You will receive the refund amount in your bank account within 2-7 working days. "],
+				"button_name":["Buy Gold","",""],
+				"trigger":["https://groww.in/dashboard/explore/gold","",""]
+			},
+			{
+				"type": "Selling Gold",
+				"questions":["How do I sell Digital Gold purchased on Groww?","How soon can I sell the Digital Gold bought on Groww?","Where is the money settled when I sell Digital Gold on Groww?"],
+				"answers":["Gold purchased on Groww can be sold back to Augmont anytime after the 2-day holding period from the date of purchase.\n\n1. Click on the sell tab: Enter units to sell at the current selling price shown\n\n2. Sell in one-click: Review and place your sell request within the 5-minute price window.\n\n3. Request confirmed: Your gold locker will be updated, where you can view your Digital Gold balance.\n\nYou will receive the amount in your chosen bank account within 2 working days.",
+									"You will be able to sell the Gold bought on Groww after 2 working days from the date of purchase.",
+									"On selling Digital Gold, the money will be settled and transferred to your chosen bank account within 2 working days."],
+				"button_name":["My Gold","",""],
+				"trigger":["https://groww.in/dashboard/investments/gold","",""]
+			},
+			{
+				"type": "Gold Storage and Insurance",
+				"questions":["How long can I store my gold bought via Groww?","Is the gold insured?","Is my gold safe?"],
+				"answers":["There is no limit on how long you can hold gold in your portfolio.",
+									"Yes, the physical gold is secured in the Sequel vault and is insured. Augmont does not charge you for insurance.",
+									"The physical gold is stored by Augmont in 100% secured Sequel vaults and insured (verified by an IDBI Trusteeship Service Pvt. Ltd.—an independent trustee)."],
+				"button_name":["","",""],
+				"trigger":["","",""]
+			}
+		]
+}
+{
+		"page_id": 4,
+		"page_name":"US Stocks",
+		"products_listed":[10,11,12,13],
+		"subsections":[
+			{
+				"type":"Getting Started",
+				"questions":["Where is the account held? Who is responsible for the custody and clearing?","Who owns the shares?","Am I legally allowed to invest in foreign markets?","What is ViewTrade Securities?"],
+				"answers":["Your brokerage account is managed by Viewtrade Securities (VTS), who work with Apex Clearing corporation for trade clearing and custodian aspects of user accounts.\nVTS is registered as a securities broker-dealer with the US, Securities Exchange Commission (“SEC”), (SEC# 8-51605) and is a member of the Financial Industry Regulatory Authority, Inc. (“FINRA”) (CRD# 46987); and Securities Investor Protection Corporation (“SIPC”). ",
+									"In the US, shares are held in the 'street name'  by the custodian. You own the shares and all your investments/accounts. The accounts are opened in your name with your credentials and belong solely to you. \nAs per SEC guidelines, you may verify the ownership of your account and shares by contacting ViewTrade at support@viewtrade.com for the same.",
+									"Yes, under the RBI's LRS (Liberalized Remittance Scheme), any Indian resident can invest up to a limit of $250,000 per financial year in the foreign markets.\nLRS also includes other remittances that you might be doing like, foreign travel, foreign education, etc. under the same transfer mode. Where in this case it would particularly be for foreign portfolio investments. All LRS based investments are moderated by RBI guidelines.",
+									"ViewTrade Securities (VTS) is registered as a securities broker-dealer with the United States, Securities Exchange Commission (“SEC”), (SEC# 8-51605) and is a member of the Financial Industry Regulatory Authority, Inc. (“FINRA”) (CRD# 46987); and Securities Investor Protection Corporation (“SIPC”), and other necessary governmental agencies.\nVTS provides brokerage services and in facilitating clearing and settling of securities transactions. "],
+				"button_name":["","","",""],
+				"trigger":["","","",""]
+			},
+			{
+				"type":"About US Stocks",
+				"questions":["What is a cash account?","What is fractional investing?","Is there any minimum amount to start investing in US stocks?"],
+				"answers":["A cash account is a type of brokerage account in which the investor must pay the full amount for securities purchased. \nAn investor using a cash account is not allowed to borrow funds from his or her broker-dealer in order to pay for transactions in the account (trading on margin).\nIn particular, regulation authorizes a broker-dealer to use a cash account to purchase a security for an investor if:\n-There are sufficient funds in the account; or\n-The broker-dealer accepts in good faith the investor’s agreement that the investor will promptly make full cash payment for the security before selling it and does not contemplate selling the security prior to making such payment.",
+									"One of the unique and flexible investing mechanisms in the US market is that investors can own fractions of stocks along with full shares. Anything less than 1 quantity is considered as fraction purchase. This gives investors the ability to trade any fraction or dollar value in a listed company.\nThis helps you invest smaller amounts across a diversified portfolio of stocks. Just like buying, we allow selling of fractional shares. You can sell all your holdings, or a part of it.",
+									"There is no minimum amount criteria on Groww. However, it is suggested to begin with LRS worth $100."],
+				"button_name":["","",""],
+				"trigger":["","",""]
+			}
+		]
+}
+{
+		"page_id": 5,
+		"page_name":"Orders",
+		"products_listed":[],
+		"subsections":[
+			{
+				"type":"General Order faq-s",
+				"questions":["What is the charge for buy order (delivery)?","What is the charge for sell order (delivery)?","Is there any rule for limit price of an order?"],
+				"answers":["Groww gives you the best stock investing experience at a low charge.\nSTT Charges: 0.1% \nExchange Transaction Charges: 0.00325% (NSE) or 0.003% (BSE) \nSEBI Turnover Charges: 0.00005% \nStamp Duty: 0.015% \nBrokerage: Rs 20 or 0.05% per order (whichever is lower) \nTry our brokerage calculator to understand charges better.",
+									"STT Charges: 0.1% \nExchange Transaction Charges: 0.00325% (NSE) or 0.003% (BSE) \nSEBI Turnover Charges: 0.00005% \nStamp Duty: 0.015% \nBrokerage: Rs 20 or 0.05% per order (whichever is lower)\nBrokerage: Rs 20 or 0.05% per order (whichever is lower)\nDP charge: Rs.13.5 + 18% GST (per company per trading day)",
+									"As per exchange guidelines, you can buy or sell a stock within a certain range. This range is displayed to you when you're placing a buy or sell limit order."],
+				"button_name":["Brokerage Calculator","",""],
+				"trigger":["https://groww.in/pages/calculators/brokerage-calculator/","",""]
+			},
+			{
+				"type":"Processing Order",
+				"questions":["My order is still not completed. ","How to cancel a mutual fund order?"],
+				"answers":["It usually takes 3-4 bank working days for a mutual fund order to complete.\nIn case of liquid funds, it takes 1-2 bank working days.\nIf it has already been more than 3-4 working days, you can raise a ticket. ",
+									"Mutual Fund orders cannot be cancelled once placed.\nIf you placed a buy order, you can redeem/withdraw the amount after the order is completed. \nIf you placed a sell order, you can invest the amount back again."],
+				"button_name":["",""],
+				"trigger":["",""]
+			},
+			{
+				"type":"Cancelled Order",
+				"questions":["How long does cancellation take?"],
+				"answers":["The refund amount takes 3-4 days to be reflected in your bank account."],
+				"button_name":[""],
+				"trigger":[""]
+			},
+			{
+				"type":"Failed Order",
+				"questions":["Why did my fixed deposit investment fail?","My fixed deposit order failed. When will I get the refund?"],
+				"answers":["Your fixed deposit investment may fail due to:\n-incorrect/mismatched data in the KYC documents submitted resulting in KYC rejection\n-payment issues while booking the fixed deposit\nPlease re-upload your documents or retry making the payment.\nIf this is a recurring issue, please raise a ticket. We'll resolve this issue as soon as possible. ",
+									"You will receive the refund amount in your bank account within 5-7 working days."],
+				"button_name":["",""],
+				"trigger":["",""]
+			},
+			{
+				"type":"Successful Order",
+				"questions":["How do I track my transaction?","Browse similar products"],
+				"answers":["Press the 'MY ORDERS' button below to see your transactions.\nNote: If the amount has been deducted from your account but is not reflecting, then it will be refunded back to your account in 2-3 working days.",
+									"Click the button below to list similar products"],
+				"button_name":["My Orders","List All"],
+				"trigger":["https://groww.in/user/order/deposits","https://groww.in/stocks/filter"]
+			}
+		]
+}
