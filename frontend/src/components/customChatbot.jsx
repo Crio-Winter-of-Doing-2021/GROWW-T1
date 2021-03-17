@@ -2,7 +2,7 @@ import React from "react";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 function customChatbot(props) {  const config = {
-    width: "300px",
+    width:"400px",
     height: "400px",
     floating: true
   };
@@ -17,23 +17,51 @@ function customChatbot(props) {  const config = {
     userBubbleColor: "#fff",
     userFontColor: "#4c4c4c"
    };
+  
   const steps = [
      {
       id: "Greet",
-      message: "Hello there, this is stonksman. How may I help you?",
-      trigger: "Done"
+      message: "Hello there, this is Emilia. How may I help you?",
+      delay: 5,
+      trigger: "info"
      },
      {
-      id: "Done",
-      message: "Have a great day !!",
+      id: "info",
+      message: "Before we move ahead could you share your number with us so that we can be in contact with you??",
+      
+      trigger: '1'
+     },
+     {
+      id: '1',
+      user: true,
+      validator: (value) => {
+        if (isNaN(value)) {
+          return 'value should be a number';
+        }
+        return true;
+      },
+      trigger: 'last',
+    },
+    {
+      id:'last',
+      message: 'Thank you!!',
       end: true
-     }
+    }
+
    ];
-  
+   const img="https://avatarfiles.alphacoders.com/547/thumb-54759.png";
+   
+   
   return(
+    
     <ThemeProvider theme={theme}>
-    <ChatBot steps={steps} {...config} />
-    </ThemeProvider>
+      
+      
+    <ChatBot
+    speechSynthesis={{ enable: true, lang: 'en' }}
+    steps={steps} {...config} botAvatar={img}/>
+   
+        </ThemeProvider>
     );
    
 }export default customChatbot;

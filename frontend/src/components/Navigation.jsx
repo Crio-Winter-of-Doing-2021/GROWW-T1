@@ -4,57 +4,57 @@ import { Link, withRouter } from "react-router-dom";
 function Navigation(props) {
   return (
     <div className="navigation">
-      <nav class="navbar navbar-expand navbar-dark bg-dark">
-        <div class="container">
-          <Link class="navbar-brand" to="/">
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <div className="container">
+          <Link className="navbar-brand" to="/">
             GROWW
           </Link>
 
           <div>
-            <ul class="navbar-nav ml-auto">
+            <ul className="navbar-nav ml-auto">
               <li
-                class={`nav-item  ${
-                  props.location.pathname === "/stocks" ? "active" : ""
+                className={`nav-item  ${
+                  props.location.pathname === "/explore/stocks" ? "active" : ""
                 }`}
               >
-                <Link class="nav-link" to="/stocks">
+                <Link className="nav-link" to="/explore/stocks">
                   Stocks
-                  <span class="sr-only">(current)</span>
+                  <span className="sr-only">(current)</span>
                 </Link>
               </li>
               <li
-                class={`nav-item  ${
-                  props.location.pathname === "/deposits" ? "active" : ""
+                className={`nav-item  ${
+                  props.location.pathname === "/explore/deposits" ? "active" : ""
                 }`}
               >
-                <Link class="nav-link" to="/deposits">
+                <Link className="nav-link" to="/explore/deposits">
                   Fixed Deposits
                 </Link>
               </li>
               <li
-                class={`nav-item  ${
-                  props.location.pathname === "/mutual-funds" ? "active" : ""
+                className={`nav-item  ${
+                  props.location.pathname === "/explore/mutual-funds" ? "active" : ""
                 }`}
               >
-                <Link class="nav-link" to="/mutual-funds">
+                <Link className="nav-link" to="/explore/mutual-funds">
                   Mutual Funds
                 </Link>
               </li>
               <li
-                class={`nav-item  ${
-                  props.location.pathname === "/gold" ? "active" : ""
+                className={`nav-item  ${
+                  props.location.pathname === "/explore/gold" ? "active" : ""
                 }`}
               >
-                <Link class="nav-link" to="/gold">
+                <Link className="nav-link" to="/explore/gold">
                   Gold
                 </Link>
               </li>
               <li
-                class={`nav-item  ${
-                  props.location.pathname === "/us-stocks" ? "active" : ""
+                className={`nav-item  ${
+                  props.location.pathname === "/explore/us-stocks" ? "active" : ""
                 }`}
               >
-                <Link class="nav-link" to="/us-stocks">
+                <Link className="nav-link" to="/explore/us-stocks">
                   US Stocks
                 </Link>
               </li>

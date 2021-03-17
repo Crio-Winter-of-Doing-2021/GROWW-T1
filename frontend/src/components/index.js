@@ -7,3 +7,4 @@ export {default as Deposits} from "./deposits";
 export {default as UsStocks} from "./us-stocks";
 export {default as Gold} from "./gold";
 export {default as CustomChatbot} from "./customChatbot";
+export {default as Home} from "./home";
