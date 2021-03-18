@@ -1,5 +1,4 @@
 {
-		"user_id":1,
 		"user_name":"Brrr",
 		"phone_number": "9434241404",
 		"status": "logged in",
@@ -12,7 +11,6 @@
 					   ]
 }
 {
-		"user_id": 2,
 		"user_name": "Brrrrrrrrrrr",
 		"phone_number": "9898989898",
 		"status": "logged out",
@@ -27,11 +25,10 @@
 					   ]
 }
 {
-		"user_id": 3,
 		"user_name":"Br",
 		"phone_number": "65555666655",
 		"status": "logged out",
-		"password": "",
+		"password": "Br",
 		"email": "Br@gmail.com",
 		"kyc_status": "done",
 		"kyc_details":{"pan": "86tAe5tgy7797"},

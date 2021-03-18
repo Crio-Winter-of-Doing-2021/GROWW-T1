@@ -3,7 +3,7 @@ const users = require('../models/user_model.js')
 const pages = require('../models/page_model.js')
 const products = require('../models/product_model.js')
 
-exports.getStocks = async(req, res) => {
+exports.getProducts = async(req, res) => {
 	var path=req.path.substring(1);
     await pages.aggregate([
     {$match : { page_name: path } },
@@ -23,11 +23,75 @@ exports.getStocks = async(req, res) => {
         if (!page_req.length) {
             return res
                 .status(200)
-            .send(path);
+            .send(path+" doesn't contain products");
         }
     else {
     return res.status(200).json(page_req); }
-	});												//limit for limiting the list to 100 entries in case the database is huge
+	});											
     	};
-
+exports.loggingUser =async(req,res) => {
+	if(req.body.status==="logging in")
+	{
+		let username=req.body.username, password=req.body.password;
+		await users.find({user_name: req.body.username}, (err, user) =>{
+			if(err)
+			{
+				return res.status(400).json({ success: false, error: err })
+			}
+			else if(!user.length)
+			{
+					let obj={user_name:req.body.username, phone_number:"", status: "logged in", password: req.body.password, email: "", kyc_status: "not done", kyc_details:{pan: ""},orders:[]};
+					let new_user=new users(obj);
+					if (!new_user){
+        				return res.status(400).json({ success: false, error: "Schema failed" })
+    				}
+					new_user.save()																							
+					.then(() => {
+						return res.status(201).send("New user registration saved successfully");
+					})
+					.catch(error => {
+						return res.status(404).send("Error: New user registration not done.");
+					})
+					res.status(200).send("New user registered successfully!");
+			}
+			else
+			{
+				if (user[0].password===password)
+				{
+				users.findOneAndUpdate({user_name:req.body.username}, {status:"logged in"}, { useFindAndModify: false })
+    				.then(data => {																							
+      				if (!data) {																						
+        			res.status(404).send("Cannot update status . Maybe user was not found!");
+			  		} else {
+			  		console.log(data);																				
+			  		res.status(200).send("User successfully logged in");
+					}
+					})
+					.catch(err => {
+			  		res.status(404).send( "Error updating user log-in status");
+			  		});
+				}
+					
+				else
+				{
+					res.status(403).send("Wrong password. Try again!");
+				}
+			}
+		});
+	}
+	else
+	{
+		users.findOneAndUpdate({user_name:req.body.username}, {status:"logged out"}, { useFindAndModify: false })
+    	.then(data => {																							
+      		if (!data) {																						
+        	res.status(404).send("Cannot update status . Maybe user was not found!");
+      		} else {
+      		console.log(data);																				
+      		res.status(201).send("User logged out successfully." )}
+    		})
+    	.catch(err => {
+      		res.status(404).send( "Error updating user log-in status");
+      		});
+	}	
+};
 
