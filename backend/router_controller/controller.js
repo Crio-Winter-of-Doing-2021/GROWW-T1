@@ -94,4 +94,20 @@ exports.loggingUser =async(req,res) => {
       		});
 	}	
 };
+exports.getPdtFaq =async(req,res) => {
+	await products.find({product_id:req.params.id},(err,pdt) => {
+	if(err)
+	{
+		res.status(400).send("Error occured");
+	}
+	else if(!pdt.length)
+	{
+		res.status(200).send("Product does not exist")
+	}
+	else
+	{
+		res.status(200).send(pdt[0]);
+	}
+	});
+};
 
