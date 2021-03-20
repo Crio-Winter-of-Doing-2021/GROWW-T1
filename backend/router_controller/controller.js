@@ -15,7 +15,7 @@ exports.getProducts = async(req, res) => {
 		        as: "page"
 		    }
         },
-        { $unset: [ "subsections", "page_id","page_name" ,"products_listed","_id"] }
+        { $unset: [  "page_id","page_name" ,"products_listed","_id"] }
         ], (err, page_req) => {	
         if (err) {
             return res.status(400).json({ success: false, error: err })
