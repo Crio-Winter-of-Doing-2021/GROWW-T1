@@ -7,7 +7,9 @@ router.get('/us_stocks',PageCtrl.getProducts)
 router.get('/gold',PageCtrl.getProducts)
 router.get('/orders',PageCtrl.getProducts)
 router.post('/loggingUser',PageCtrl.loggingUser)
-router.get('/products/:id',PageCtrl.getPdtFaq)
+router.get('/stocks/:id',PageCtrl.getPdtFaq)
+router.get('/us_stocks/:id',PageCtrl.getPdtFaq)
+router.get('/mutual_funds/:id',PageCtrl.getPdtFaq)
 
 
 module.exports = router
