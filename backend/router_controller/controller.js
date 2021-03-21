@@ -21,9 +21,7 @@ exports.getProducts = async(req, res) => {
             return res.status(400).json({ success: false, error: err })
         }
         if (!page_req.length) {
-            return res
-                .status(200)
-            .send(path+" doesn't contain products");
+            return res.status(200).send(path+" doesn't contain products");
         }
     else {
     return res.status(200).json(page_req); }
@@ -95,19 +93,65 @@ exports.loggingUser =async(req,res) => {
 	}	
 };
 exports.getPdtFaq =async(req,res) => {
-	await products.find({product_id:req.params.id},(err,pdt) => {
+	await products.findOne({product_id:req.params.id},(err,pdt) => {
 	if(err)
 	{
 		res.status(400).send("Error occured");
 	}
-	else if(!pdt.length)
+	else if(pdt===null)
 	{
 		res.status(200).send("Product does not exist")
 	}
 	else
 	{
-		res.status(200).send(pdt[0]);
+		res.status(200).send(pdt);
 	}
 	});
 };
 
+exports.getSelectedOrderFaq = async(req,res) =>{
+	await users.findOne({user_name:req.params.user},(err,user) =>{
+	if(err)
+	{
+		res.status(400).send("Error occured");
+	}
+	else if(user===null)
+	{
+		res.status(200).send("User not found");
+	}
+	else
+	{
+	 	var list=user.orders;
+	 	for(var i=0;i<list.length;i++)
+	 	{
+	 			if(list[i].order_id==req.params.id)
+	 			{
+	 				var status=list[i].order_status;
+	 				pages.findOne({page_name:"orders"}, (err,page) =>{
+    					if(err)
+    					{
+    						res.status(400).send("Error");
+    					}
+    					else if(page===null)
+    					{
+    						res.status(200).send("Order status doesn't exist");
+    					}
+    					else
+    					{
+    						var findtype=page.subsections;
+    						for(var j=0;j<findtype.length;j++)
+    						{
+    							if(page.subsections[j].type===status)
+    							{
+									res.status(200).send(page.subsections[j]);
+    							}
+    						}
+    					}
+    					
+    		 		});
+	 			}
+	}
+	}
+	});
+
+};

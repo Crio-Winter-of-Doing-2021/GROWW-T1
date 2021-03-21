@@ -10,6 +10,7 @@ router.post('/loggingUser',PageCtrl.loggingUser)
 router.get('/stocks/:id',PageCtrl.getPdtFaq)
 router.get('/us_stocks/:id',PageCtrl.getPdtFaq)
 router.get('/mutual_funds/:id',PageCtrl.getPdtFaq)
+router.get('/order/:user/:id',PageCtrl.getSelectedOrderFaq)
 
 
 module.exports = router
