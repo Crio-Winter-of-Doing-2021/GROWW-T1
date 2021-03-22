@@ -56,11 +56,12 @@ input[type=text], input[type=password] {
 .imgcontainer {
   text-align: center;
   margin: 24px 0 12px 0;
+  
 }
 
 /* Avatar image */
 img.avatar {
-  width: 40%;
+  width: 20%;
   border-radius: 50%;
 }
 
@@ -139,4 +140,76 @@ span.psw {
 @keyframes animatezoom {
   from {transform: scale(0)}
   to {transform: scale(1)}
+}
+#smooth 
+.dialog-enter {
+  opacity: 0.01;
+  transform: scale(1.1);
+}
+
+.dialog-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 300ms;
+}
+
+.dialog-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dialog-exit-active {
+  opacity: 0.01;
+  transform: scale(1.1);
+  transition: all 300ms;
+}
+.element{
+  animation: MoveUpDown 1s linear infinite;
+  
+  left: 0;
+  bottom: 0;
+}
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 100px;
+  }
+}
+.navbar{
+  padding-left: 15%;
+  padding-right: 15%;
+}
+.invest{
+  
+  padding-top: 60%;
+  padding-right: 60%;
+}
+.started{
+  padding: 5%;
+}
+.card-img-top{
+  width: 250px;
+  height: 250px;
+}
+
+.card{
+  box-shadow: 5px 10px 8px #888888;
+  margin-bottom: 10%;
+}
+.card-body{
+  height: 150;
+  
+}
+.homediv{
+  width: 70px;
+  height: 70px;
+}
+.svgs{
+  padding-top: 50%;
+  
+}
+.homeCol{
+  border: 5%;
 }
