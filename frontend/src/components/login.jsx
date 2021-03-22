@@ -12,7 +12,7 @@ export default class login extends Component {
           
           <form className="modal-content animate" action="/action_page.php">
             <div className="imgcontainer">
-              <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
+              <img src="images/login-icon.jpg" alt="Avatar" className="avatar"/>
             </div>
         
             <div className="container">

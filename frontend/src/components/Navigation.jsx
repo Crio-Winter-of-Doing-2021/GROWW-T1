@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 
 function Navigation(props) {
   return (
+    
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
@@ -20,15 +21,6 @@ function Navigation(props) {
                 <Link className="nav-link" to="/explore/stocks">
                   Stocks
                   <span className="sr-only">(current)</span>
-                </Link>
-              </li>
-              <li
-                className={`nav-item  ${
-                  props.location.pathname === "/explore/deposits" ? "active" : ""
-                }`}
-              >
-                <Link className="nav-link" to="/explore/deposits">
-                  Fixed Deposits
                 </Link>
               </li>
               <li

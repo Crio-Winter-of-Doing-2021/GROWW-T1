@@ -1,8 +1,9 @@
 import React from "react";
+import { CustomChatbot } from ".";
 
-function mutualFunds() {
+function product() {
   return (
-    <div className="mutual-funds">
+    <div className="product">
       <div className="container">
         <div className="row align-items-center my-5">
           <div className="col-lg-7">
@@ -13,7 +14,7 @@ function mutualFunds() {
             />
           </div>
           <div className="col-lg-5">
-            <h1 className="font-weight-light">Mutual Funds</h1>
+            <h1 className="font-weight-light">Stocks</h1>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -23,8 +24,10 @@ function mutualFunds() {
           </div>
         </div>
       </div>
+      <CustomChatbot />
     </div>
+     
   );
 }
 
-export default mutualFunds;
+export default product;
