@@ -1,30 +1,145 @@
-import React from "react";
-import {Navbar, Nav, FormControl, Form, Button} from 'react-bootstrap';
-import {Login} from '.';
+import React, { Component } from "react";
+import { Navbar, Nav, FormControl, Form, Button } from "react-bootstrap";
+import { Login } from ".";
+import { Link, withRouter } from "react-router-dom";
 
-function home()
-{
-    return(
-        <>
+import { Card, Col, Row, Container } from "react-bootstrap";
+
+class home extends Component {
+  element = [
+    { id: 0, data: "stocks" },
+    { id: 1, data: "Mutual Funds" },
+    { id: 2, data: "US Stocks" },
+    { id: 3, data: "Gold" },
+    { id: 4, data: "FDs" },
+  ];
+  state = { count: 0 };
+  onAnimationIteration = () => {
+    this.setState({ count: (this.state.count + 1) % 5 });
+  };
+  getElem() {
+    var x = this.state.count;
+    return this.element.map((mapItem) => {
+      let val;
+      if (mapItem.id === x) {
+        val = mapItem.data;
+      }
+      return <span> {val}</span>;
+    });
+  }
+
+  render() {
+    return (
+      <>
         <Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="/">GROWW</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href="/explore/stocks">Explore</Nav.Link>
-    </Nav>
-    <Form inline>
-      <FormControl type="text" placeholder="Search stocks and mutual funds" className="mr-sm-2" />
-      <Button variant="outline-info">Search</Button>
-    </Form>
-    <Button onClick={()=>{
-      document.getElementById('id01').style.display='block';
-      }} variant="primary">Login/Register</Button>
-    
-  </Navbar>
-  <Login/>
-
-  </>
-
+          <Navbar.Brand href="/">GROWW</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="/explore/stocks">Explore</Nav.Link>
+          </Nav>
+          <Form inline>
+            <FormControl
+              type="text"
+              placeholder="Search stocks and mutual funds"
+              className="mr-sm-2"
+            />
+            <Button variant="outline-info">Search</Button>
+          </Form>
+          <Button
+            onClick={() => {
+              document.getElementById("id01").style.display = "block";
+            }}
+            variant="primary"
+          >
+            Login/Register
+          </Button>
+        </Navbar>
+        <Login />
+        <Container className="home">
+          <Row>
+            <Col size="4" sm="6" className="homeCol">
+              <div className="invest">
+                <h1>
+                  Invest in
+                  <span
+                    className="element"
+                    onAnimationIteration={this.onAnimationIteration}
+                  >
+                    {this.getElem()}
+                  </span>
+                </h1>
+                <p>
+                  Join a community of over a <b>Million</b> investors trusting
+                  us as their favorite investing platform.
+                </p>
+                <Button
+                  class="started"
+                  onClick={() => {
+                    document.getElementById("id01").style.display = "block";
+                  }}
+                  variant="primary"
+                >
+                  Get Started
+                </Button>
+              </div>
+            </Col>
+            <Col size="4" sm="6" className="homeCol">
+              <Container className="svgs">
+                <Row>
+                  <Col size="1" sm="6">
+                    <Card border="dark">
+                      <Card.Img
+                        className="homediv"
+                        variant="top"
+                        src="./Images/stock.svg"
+                      />
+                      <Card.Body>
+                        <Card.Title>Stocks</Card.Title>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col size="1" sm="6">
+                    <Card border="dark">
+                      <Card.Img
+                        className="homediv"
+                        variant="top"
+                        src="./Images/mf.svg"
+                      />
+                      <Card.Body>
+                        <Card.Title>Mutual Funds</Card.Title>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col size="1" sm="6">
+                    <Card border="dark">
+                      <Card.Img
+                        className="homediv"
+                        variant="top"
+                        src="./Images/gold.svg"
+                      />
+                      <Card.Body>
+                        <Card.Title>Gold</Card.Title>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col size="1" sm="6">
+                    <Card border="dark">
+                      <Card.Img
+                        className="homediv"
+                        variant="top"
+                        src="./Images/uss.svg"
+                      />
+                      <Card.Body>
+                        <Card.Title> US Stocks</Card.Title>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                </Row>
+              </Container>
+            </Col>
+          </Row>
+        </Container>
+      </>
     );
-
+  }
 }
-export default home;
+export default withRouter(home);
