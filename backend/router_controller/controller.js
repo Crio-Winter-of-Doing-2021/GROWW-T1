@@ -15,7 +15,7 @@ exports.getProducts = async(req, res) => {
 		        as: "page"
 		    }
         },
-        { $unset: [  "page_id","page_name" ,"products_listed","_id"] }
+        { $unset: [ "page_id","page_name" ,"products_listed","_id"] }
         ], (err, page_req) => {	
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -153,5 +153,38 @@ exports.getSelectedOrderFaq = async(req,res) =>{
 	}
 	}
 	});
-
 };
+exports.getPageFaq = async(req,res) => {
+var result = /[^/]*$/.exec(req.path)[0];
+await pages.findOne({page_name:result},(err,page) =>{
+	if(err)
+	{
+		res.send(err);
+	}
+	else
+	{
+		var items=page.subsections,steps=[];
+		let st=0,q1=[],ar=[];
+          for (let i = 0; i < page.subsections.length; i = i + 1) {
+            q1.push({value:i+1, label: page.subsections[i].type, trigger: "qs"+st });
+            st = st + 1;
+          }
+          steps.push({id:"question",options:q1});
+          for (let i = 0; i < items.length; i = i + 1) 
+          {
+		ar=[];
+	   for(let j=0; j<items[i].questions.length;j=j+1)
+		{
+		  ar.push({value:i*10+j,label:items[i].questions[j],trigger:"ans"+i+j});
+		}
+	   steps.push({id:"qs"+i,options:ar});
+	   for(let j=0; j<items[i].questions.length;j=j+1)
+		{
+		  steps.push({id:"ans"+i+j,message:items[i].answers[j],trigger:"Greet"});
+		}
+	}
+	res.send(steps);
+	}
+});
+
+}
