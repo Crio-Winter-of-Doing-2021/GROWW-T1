@@ -163,7 +163,12 @@ await pages.findOne({page_name:result},(err,page) =>{
 	}
 	else
 	{
-		var items=page.subsections,steps=[];
+		var items=page.subsections,steps=[{
+			id: "Greet",
+			message: "Hello there, this is Emilia. How may I help you?",
+			delay: 5,
+			trigger: "question",
+		  }];
 		let st=0,q1=[],ar=[];
           for (let i = 0; i < page.subsections.length; i = i + 1) {
             q1.push({value:i+1, label: page.subsections[i].type, trigger: "qs"+st });
