@@ -92,7 +92,7 @@ exports.loggingUser =async(req,res) => {
       		});
 	}	
 };
-exports.getPdtFaq =async(req,res) => {
+exports.getPdtInfo =async(req,res) => {
 	await products.findOne({product_id:req.params.id},(err,pdt) => {
 	if(err)
 	{
@@ -105,6 +105,39 @@ exports.getPdtFaq =async(req,res) => {
 	else
 	{
 		res.status(200).send(pdt);
+	}
+	});
+};
+
+exports.getPdtFaq=async(req,res) => {
+	await products.findOne({product_id:req.params.id},(err,pdt) => {
+	if(err)
+	{
+		res.status(400).send("Error occured");
+	}
+	else if(pdt===null)
+	{
+		res.status(200).send("Product does not exist")
+	}
+	else
+	{
+		var q=pdt.questions,a=pdt.answers,steps=[{
+			id: "Greet",
+			message: "Hello there, this is Emilia. How may I help you?",
+			delay: 5,
+			trigger: "questions",
+		  }];
+		let st=0,q1=[],ar=[];
+          for (let i = 0; i <q.length; i = i + 1) {
+            q1.push({value:i+1, label:q[i], trigger: "ans"+st });
+            st = st + 1;
+          }
+          steps.push({id:"questions",options:q1});
+	   	for(let j=0; j<a.length;j=j+1)
+		{
+		  steps.push({id:"ans"+j,message:a[j],trigger:"Greet"});
+		}
+		res.send(steps);
 	}
 	});
 };
