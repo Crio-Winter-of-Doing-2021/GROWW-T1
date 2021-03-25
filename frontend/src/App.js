@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Home, Page, Products } from "./components";
+import { Home, Page, Products, Gold } from "./components";
 
 
 
@@ -16,15 +16,15 @@ function App() {
         
             
                 <Switch>
-                  <Route path="/explore/stocks" exact component={() => < Page data="http://localhost:8080/stocks" header="Stocks" loc="/explore/stocks/" />} />
-                  <Route path="/stocks/:stock" exact component={() => < Products />} />
-                  <Route path="/explore/mutual-funds" exact component={() => <Page data="http://localhost:8080/mutual_funds" header="Mutual Funds" loc="/explore/mutual-funds/"/>} />
-                  <Route path="/mutual-funds/:mutual-fund" exact component={() => <Products />} />
+                  <Route path="/explore/stocks" exact component={() => < Page data="http://localhost:8080/stocks" steps="http://localhost:8080/faq_steps/stocks" header="Stocks" loc="/explore/stocks/" />} />
+                  <Route path="/explore/stocks/:id" exact component={() => < Products data="http://localhost:8080/stocks/" steps="http://localhost:8080/faq_steps/product/"/>} />
+                  <Route path="/explore/mutual-funds" exact component={() => <Page data="http://localhost:8080/mutual_funds"  steps="http://localhost:8080/faq_steps/mutual_funds" header="Mutual Funds" loc="/explore/mutual-funds/"/>} />
+                  <Route path="/explore/mutual-funds/:id" exact component={() => <Products data="http://localhost:8080/mutual_funds/" steps="http://localhost:8080/faq_steps/product/"/>} />
                
-                  <Route path="/explore/gold" exact component={() => <Page header="Gold"/>} />
+                  <Route path="/explore/gold" exact component={() => <Gold data="http://localhost:8080/gold"  steps="http://localhost:8080/faq_steps/gold" header="Digital Gold"/>} />
 
-                  <Route path="/explore/us-stocks" exact component={() => <Page data="http://localhost:8080/us_stocks" header="US Stocks" loc="/explore/us-stocks/"/>} />
-                  <Route path="/us-stocks/:us-stock" exact component={() => <Products />} />
+                  <Route path="/explore/us-stocks" exact component={() => <Page data="http://localhost:8080/us_stocks"  steps="http://localhost:8080/faq_steps/us_stocks" header="US Stocks" loc="/explore/us-stocks/"/>} />
+                  <Route path="/explore/us-stocks/:id" exact component={() => <Products data="http://localhost:8080/us_stocks/"  steps="http://localhost:8080/faq_steps/product/"/>} />
 
                 </Switch>
 

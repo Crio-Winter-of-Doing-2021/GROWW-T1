@@ -141,28 +141,7 @@ span.psw {
   from {transform: scale(0)}
   to {transform: scale(1)}
 }
-#smooth 
-.dialog-enter {
-  opacity: 0.01;
-  transform: scale(1.1);
-}
 
-.dialog-enter-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: all 300ms;
-}
-
-.dialog-exit {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.dialog-exit-active {
-  opacity: 0.01;
-  transform: scale(1.1);
-  transition: all 300ms;
-}
 .element{
   animation: MoveUpDown 1s linear infinite;
   
@@ -177,9 +156,11 @@ span.psw {
     bottom: 100px;
   }
 }
+
+
 .navbar{
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 .invest{
   

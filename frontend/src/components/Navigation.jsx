@@ -1,59 +1,35 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
-
+import { withRouter } from "react-router-dom";
+import {Navbar, Form, Nav, Button, FormControl} from "react-bootstrap";
+import {Login} from ".";
 function Navigation(props) {
   return (
     
     <div className="navigation">
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            GROWW
-          </Link>
-
-          <div>
-            <ul className="navbar-nav ml-auto">
-              <li
-                className={`nav-item  ${
-                  props.location.pathname === "/explore/stocks" ? "active" : ""
-                }`}
-              >
-                <Link className="nav-link" to="/explore/stocks">
-                  Stocks
-                  <span className="sr-only">(current)</span>
-                </Link>
-              </li>
-              <li
-                className={`nav-item  ${
-                  props.location.pathname === "/explore/mutual-funds" ? "active" : ""
-                }`}
-              >
-                <Link className="nav-link" to="/explore/mutual-funds">
-                  Mutual Funds
-                </Link>
-              </li>
-              <li
-                className={`nav-item  ${
-                  props.location.pathname === "/explore/gold" ? "active" : ""
-                }`}
-              >
-                <Link className="nav-link" to="/explore/gold">
-                  Gold
-                </Link>
-              </li>
-              <li
-                className={`nav-item  ${
-                  props.location.pathname === "/explore/us-stocks" ? "active" : ""
-                }`}
-              >
-                <Link className="nav-link" to="/explore/us-stocks">
-                  US Stocks
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <Navbar bg="dark" variant="dark">
+          <Navbar.Brand href="/">GROWW</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="/explore/stocks">Explore</Nav.Link>
+          </Nav>
+          <Form inline>
+            <FormControl
+              type="text"
+              placeholder="Search stocks and mutual funds"
+              className="mr-sm-2"
+            />
+            <Button variant="outline-info">Search</Button>
+          </Form>
+          <Button
+            onClick={() => {
+              document.getElementById("id01").style.display = "block";
+            }}
+            variant="primary"
+          >
+            Login/Register
+          </Button>
+        </Navbar>
+        <Login />
+      
     </div>
   );
 }
