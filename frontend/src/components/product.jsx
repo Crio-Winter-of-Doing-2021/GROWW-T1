@@ -1,33 +1,62 @@
-import React from "react";
-import { CustomChatbot } from ".";
+import React, { useState, useEffect } from "react";
+import { Card, Container } from "react-bootstrap";
+import { CustomChatbot, Navigation } from ".";
+import { useParams } from 'react-router-dom';
 
-function product() {
+function Products(props) {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
+  let {id}= useParams();
+
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
+  console.log(id);
+  useEffect(() => {
+    fetch(props.data+id)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+         
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, []);
+
   return (
-    <div className="product">
+    <div className="products">
+      <Navigation />
       <div className="container">
         <div className="row align-items-center my-5">
-          <div className="col-lg-7">
-            <img
-              className="img-fluid rounded mb-4 mb-lg-0"
-              src="http://placehold.it/900x400"
-              alt=""
-            />
-          </div>
-          <div className="col-lg-5">
-            <h1 className="font-weight-light">Stocks</h1>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </p>
-          </div>
+          <Container>
+          <Card border="dark">
+                    <Card.Img src={"../."+items.graph} alt={"Loading image..."} />
+                    <Card.Body>
+                      <Card.Title>{items.product_name}</Card.Title>
+                      <Card.Text>
+                      {items.About}
+                      </Card.Text>
+                    </Card.Body>
+                    
+                  </Card>
+                
+              
+            
+          </Container>
         </div>
       </div>
-      <CustomChatbot />
+      <CustomChatbot data={props.steps+id} />
     </div>
-     
   );
 }
 
-export default product;
+export default Products;
