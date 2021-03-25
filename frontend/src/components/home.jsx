@@ -24,7 +24,7 @@ class home extends Component {
       if (mapItem.id === x) {
         val = mapItem.data;
       }
-      return <span> {val}</span>;
+      return <span key={mapItem.id}> {val}</span>;
     });
   }
 
@@ -50,7 +50,7 @@ class home extends Component {
                   us as their favorite investing platform.
                 </p>
                 <Button
-                  class="started"
+                  className="started"
                   onClick={() => {
                     document.getElementById("id01").style.display = "block";
                   }}
