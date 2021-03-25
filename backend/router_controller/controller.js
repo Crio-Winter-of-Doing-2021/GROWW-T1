@@ -216,6 +216,10 @@ await pages.findOne({page_name:result},(err,page) =>{
 	{
 		res.send(err);
 	}
+	else if(page===null)
+	{
+		res.status(200).send("Page does not exist!");
+	}
 	else
 	{
 		var items=page.subsections,steps=step;
@@ -241,5 +245,22 @@ await pages.findOne({page_name:result},(err,page) =>{
 	res.send(steps);
 	}
 });
-
-}
+};
+exports.getOrdersList = async(req,res) => {
+var user=req.params.user;
+await users.findOne({user_name:user},(err,usr) =>
+{
+	if(err)
+	{
+		res.send(err);
+	}
+	else if(usr===null)
+	{
+		res.status(400).end("User not found!");
+	}
+	else
+	{
+		res.status(200).send(usr.orders);
+	}
+});
+};
