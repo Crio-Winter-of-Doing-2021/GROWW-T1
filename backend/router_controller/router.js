@@ -25,6 +25,6 @@ router.get('/faq_steps/order',PageCtrl.getPageFaq)
 
 
 router.post('/loggingUser',PageCtrl.loggingUser)
-router.get('/order/:user/:id',PageCtrl.getSelectedOrderFaq)
+router.get('/orders/:user/:id',PageCtrl.getSelectedOrderFaq)
 
 module.exports = router

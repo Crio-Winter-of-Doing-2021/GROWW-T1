@@ -2,7 +2,24 @@ import mongoose from 'mongoose';
 const users = require('../models/user_model.js')
 const pages = require('../models/page_model.js')
 const products = require('../models/product_model.js')
-
+const step=[{
+			id: "Greet",
+			message: "Hello there, this is Emilia. How may I help you?",
+			delay: 5,
+			trigger: "question",
+		  },{
+		  id: "Ask",
+		  message:"Anything else I can help you with?",
+		  trigger:"Options",
+		  },
+		  {
+		  id:"Options",
+		options:[{value:1,label:"No",trigger:"End"},{value:2,label:"Yes",trigger:"Greet"}]
+		  },{
+		  id: "End",
+		message: "See you later!",
+		end:true
+		  }];
 exports.getProducts = async(req, res) => {
 	var path=req.path.substring(1);
     await pages.aggregate([
@@ -121,12 +138,7 @@ exports.getPdtFaq=async(req,res) => {
 	}
 	else
 	{
-		var q=pdt.questions,a=pdt.answers,steps=[{
-			id: "Greet",
-			message: "Hello there, this is Emilia. How may I help you?",
-			delay: 5,
-			trigger: "questions",
-		  }];
+		var q=pdt.questions,a=pdt.answers,steps=step;
 		let st=0,q1=[],ar=[];
           for (let i = 0; i <q.length; i = i + 1) {
             q1.push({value:i+1, label:q[i], trigger: "ans"+st });
@@ -135,7 +147,7 @@ exports.getPdtFaq=async(req,res) => {
           steps.push({id:"questions",options:q1});
 	   	for(let j=0; j<a.length;j=j+1)
 		{
-		  steps.push({id:"ans"+j,message:a[j],trigger:"Greet"});
+		  steps.push({id:"ans"+j,message:a[j],trigger:"Ask"});
 		}
 		res.send(steps);
 	}
@@ -176,11 +188,21 @@ exports.getSelectedOrderFaq = async(req,res) =>{
     						{
     							if(page.subsections[j].type===status)
     							{
-									res.status(200).send(page.subsections[j]);
+									var q=page.subsections[j].questions,a=page.subsections[j].answers,steps=step;
+									let st=0,q1=[],ar=[];
+									  for (let i = 0; i <q.length; i = i + 1) {
+										q1.push({value:i+1, label:q[i], trigger: "ans"+st });
+										st = st + 1;
+									  }
+									  steps.push({id:"questions",options:q1});
+								   	for(let j=0; j<a.length;j=j+1)
+									{
+									  steps.push({id:"ans"+j,message:a[j],trigger:"Ask"});
+									}
+									res.send(steps);
     							}
     						}
     					}
-    					
     		 		});
 	 			}
 	}
@@ -196,12 +218,7 @@ await pages.findOne({page_name:result},(err,page) =>{
 	}
 	else
 	{
-		var items=page.subsections,steps=[{
-			id: "Greet",
-			message: "Hello there, this is Emilia. How may I help you?",
-			delay: 5,
-			trigger: "question",
-		  }];
+		var items=page.subsections,steps=step;
 		let st=0,q1=[],ar=[];
           for (let i = 0; i < page.subsections.length; i = i + 1) {
             q1.push({value:i+1, label: page.subsections[i].type, trigger: "qs"+st });
@@ -218,7 +235,7 @@ await pages.findOne({page_name:result},(err,page) =>{
 	   steps.push({id:"qs"+i,options:ar});
 	   for(let j=0; j<items[i].questions.length;j=j+1)
 		{
-		  steps.push({id:"ans"+i+j,message:items[i].answers[j],trigger:"Greet"});
+		  steps.push({id:"ans"+i+j,message:items[i].answers[j],trigger:"Ask"});
 		}
 	}
 	res.send(steps);
