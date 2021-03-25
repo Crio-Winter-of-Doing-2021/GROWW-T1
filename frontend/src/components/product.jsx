@@ -39,7 +39,7 @@ function Products(props) {
         <div className="row align-items-center my-5">
           <Container>
           <Card border="dark">
-                    <Card.Img src={"../."+items.graph} alt={"Loading image..."} />
+                    <Card.Img src={items.graph} alt={"Loading image..."} />
                     <Card.Body>
                       <Card.Title>{items.product_name}</Card.Title>
                       <Card.Text>

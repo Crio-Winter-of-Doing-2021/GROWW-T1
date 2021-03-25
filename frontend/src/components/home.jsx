@@ -68,7 +68,7 @@ class home extends Component {
                       <Card.Img
                         className="homediv"
                         variant="top"
-                        src="./Images/stock.svg"
+                        src="/Images/stock.svg"
                       />
                       <Card.Body>
                         <Card.Title>Stocks</Card.Title>
@@ -80,7 +80,7 @@ class home extends Component {
                       <Card.Img
                         className="homediv"
                         variant="top"
-                        src="./Images/mf.svg"
+                        src="/Images/mf.svg"
                       />
                       <Card.Body>
                         <Card.Title>Mutual Funds</Card.Title>
@@ -92,7 +92,7 @@ class home extends Component {
                       <Card.Img
                         className="homediv"
                         variant="top"
-                        src="./Images/gold.svg"
+                        src="/Images/gold.svg"
                       />
                       <Card.Body>
                         <Card.Title>Gold</Card.Title>
@@ -104,7 +104,7 @@ class home extends Component {
                       <Card.Img
                         className="homediv"
                         variant="top"
-                        src="./Images/uss.svg"
+                        src="/Images/uss.svg"
                       />
                       <Card.Body>
                         <Card.Title> US Stocks</Card.Title>

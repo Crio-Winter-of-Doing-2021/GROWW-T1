@@ -99,7 +99,7 @@ function Gold(props) {
               
                 
                   <Card border="dark">
-                    <Card.Img  src= {"../."+items.graph} />
+                    <Card.Img  src= {items.graph} />
                     <Card.Body>
                       <Card.Title>{props.header}</Card.Title>
                       <Card.Text>
