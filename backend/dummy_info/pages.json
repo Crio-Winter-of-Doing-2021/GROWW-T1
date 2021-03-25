@@ -80,7 +80,7 @@
 {
 		"page_id": 3,
 		"page_name": "gold",
-		"graph":"./Images/gold.png",
+		"graph":"/Images/gold.png",
 		"About":"Digital Gold is a convenient and cost-effective way of purchasing gold online. Groww offers Digital Gold of 99.90% purity that you can purchase, sell, and accumulate anytime at the live market rate, starting at Rs 10. Stored in 100% secured vaults and insured, you can view your purchased Digital Gold in your gold locker, which is a digital version for your holdings. ",
 		"products_listed": [],
 		"subsections": [
