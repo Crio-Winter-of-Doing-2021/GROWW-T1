@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import {Navbar, Form, Nav, Button, FormControl, Image} from "react-bootstrap";
 import {Login} from ".";
-import useToken from '../useToken';
 function Navigation(props) {
-  const [token, setToken] = useState();
+  
   
   return (
     
@@ -32,7 +31,7 @@ function Navigation(props) {
             Login/Register
           </Button>
         </Navbar>
-        <Login setToken={setToken}/>
+        <Login/>
       
     </div>
   );
