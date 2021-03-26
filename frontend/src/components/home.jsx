@@ -7,7 +7,7 @@ import { Card, Col, Row, Container } from "react-bootstrap";
 
 class home extends Component {
   element = [
-    { id: 0, data: "stocks" },
+    { id: 0, data: "Stocks" },
     { id: 1, data: "Mutual Funds" },
     { id: 2, data: "US Stocks" },
     { id: 3, data: "Gold" },

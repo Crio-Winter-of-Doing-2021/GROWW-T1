@@ -96,7 +96,7 @@ function Page(props) {
             <Row>
               {items.map((item) => (
                 <Col size="6" sm="3"  key={item.product_id}>
-                  <Card border="dark">
+                  <Card border="dark" className="pageCard">
                     <Card.Img variant="top" src={item.image} />
                     <Card.Body>
                       <Card.Title>{item.product_name}</Card.Title>

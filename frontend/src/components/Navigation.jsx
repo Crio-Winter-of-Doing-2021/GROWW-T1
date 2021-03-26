@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import {Navbar, Form, Nav, Button, FormControl} from "react-bootstrap";
+import {Navbar, Form, Nav, Button, FormControl, Image} from "react-bootstrap";
 import {Login} from ".";
+import useToken from '../useToken';
 function Navigation(props) {
+  const [token, setToken] = useState();
+  
   return (
     
     <div className="navigation">
       <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/">GROWW</Navbar.Brand>
+          <Navbar.Brand href="/"><Image src="https://groww.in/favicon-32x32-groww.ico"></Image> <span className="logo">GROWW</span>  </Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link href="/explore/stocks">Explore</Nav.Link>
           </Nav>
@@ -24,11 +27,12 @@ function Navigation(props) {
               document.getElementById("id01").style.display = "block";
             }}
             variant="primary"
+            className="searchButton"
           >
             Login/Register
           </Button>
         </Navbar>
-        <Login />
+        <Login setToken={setToken}/>
       
     </div>
   );

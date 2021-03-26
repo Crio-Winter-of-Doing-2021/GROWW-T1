@@ -54,14 +54,15 @@ input[type=text], input[type=password] {
 
 /* Center the avatar image inside this container */
 .imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
+  
+   text-align: center;
+  
   
 }
 
 /* Avatar image */
 img.avatar {
-  width: 20%;
+  width: 50%;
   border-radius: 50%;
 }
 
@@ -74,6 +75,9 @@ img.avatar {
 span.psw {
   float: right;
   padding-top: 16px;
+}
+span.logo{
+  padding: 10%;
 }
 
 /* Change styles for span and cancel button on extra small screens */
@@ -105,7 +109,7 @@ span.psw {
   background-color: #fefefe;
   margin: 5px auto; /* 15% from the top and centered */
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 25%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -173,11 +177,17 @@ span.psw {
 .card-img-top{
   width: 250px;
   height: 250px;
+  
 }
 
 .card{
   box-shadow: 5px 10px 8px #888888;
   margin-bottom: 10%;
+  top:0;
+  
+}
+.pageCard:hover{
+  top:10px;
 }
 .card-body{
   height: 150;
@@ -196,4 +206,7 @@ span.psw {
 }
 .ml-auto{
   margin: auto;
+}
+.searchButton{
+  margin: 0 3%;
 }

@@ -27,8 +27,8 @@ function CustomChatbot(props) {
 
   console.log(steps.length);
   const config = {
-    width: "450px",
-    height: "600px",
+    width: "350px",
+    height: "500px",
     floating: true,
   };
   const theme = {

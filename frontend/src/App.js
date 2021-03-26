@@ -1,12 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Home, Page, Products, Gold } from "./components";
-
+import useToken from './useToken';
 
 
 
 function App() {
-  
+ 
+
   return (
 
     <div className="App">
@@ -27,17 +28,6 @@ function App() {
                   <Route path="/explore/us-stocks/:id" exact component={() => <Products data="http://localhost:8080/us_stocks/"  steps="http://localhost:8080/faq_steps/product/"/>} />
 
                 </Switch>
-
-    
-
-
-
-
-
-
-
-
-
         <footer />
       </Router>
       <Router>

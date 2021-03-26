@@ -1,7 +1,31 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import PropTypes from 'prop-types';
+async function loginUser(credentials) {
+  return fetch('http://localhost:8080/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
+export default function Login(props) {
+  
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
 
-export default class login extends Component {
-    render() {
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await loginUser({
+      username,
+      password
+    });
+    props.setToken(token);
+  }
+
+  
+    
         return (
           <div id="id01" className="modal">
           <span onClick={()=>{
@@ -10,21 +34,21 @@ export default class login extends Component {
         className="close" title="Close Modal">&times;</span>
         
           
-          <form className="modal-content animate" action="/action_page.php">
+          <form className="modal-content animate" onSubmit={handleSubmit} >
             <div className="imgcontainer">
-              <img src="images/login-icon.jpg" alt="Avatar" className="avatar"/>
+              <img src="/Images/login-icon.jpg" alt="Avatar" className="avatar"/>
             </div>
         
             <div className="container">
               <label htmlFor="uname"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="uname" required/>
+              <input type="text" placeholder="Enter Username" onChange={e => setUserName(e.target.value)} required/>
         
               <label htmlFor="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required/>
+              <input type="password" placeholder="Enter Password" onChange={e => setPassword(e.target.value)} required/>
         
-              <button type="submit" className="login">Login</button>
+              <button type="submit" className="login" name="logging in">Login</button>
               <label>
-                <input type="checkbox" checked={this.props.checked} onChange={()=>{}}  name="remember"/> Remember me
+                <input type="checkbox" checked={props.checked} onChange={()=>{}}  name="remember"/> Remember me
               </label>
             </div>
         
@@ -35,5 +59,9 @@ export default class login extends Component {
           </form>
         </div>
         );
-    }
+    
 }
+
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
+};
