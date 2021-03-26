@@ -20,7 +20,7 @@ router.get('/faq_steps/stocks',PageCtrl.getPageFaq)
 router.get('/faq_steps/mutual_funds',PageCtrl.getPageFaq)
 router.get('/faq_steps/gold',PageCtrl.getPageFaq)
 router.get('/faq_steps/us_stocks',PageCtrl.getPageFaq)
-router.get('/faq_steps/order',PageCtrl.getPageFaq)
+router.get('/faq_steps/orders',PageCtrl.getPageFaq)
 
 
 
