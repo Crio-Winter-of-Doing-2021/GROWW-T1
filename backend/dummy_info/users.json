@@ -6,8 +6,8 @@
 		"email": "Brrr@gmail.com",
 		"kyc_status": "not done",
 		"kyc_details":{"pan": ""},
-		"orders":[{"order_id":1, "order_status": "successful", "product_id":[5,13,6], "units":[8,5,3]},
-						 {"order_id":2, "order_status": "cancelled", "product_id":[6,1], "units":[1,1]}
+		"orders":[{ "order_id":1, "order_status":"Successful Order", "product_name":["Muthoot Finance",13,"Axis Bluechip Fund Direct Plan Growth"], "units":[8,5,3]},
+						 { "order_id":2, "order_status":"Cancelled Order", "product_name":["Axis Bluechip Fund Direct Plan Growth","ICICI Bank","Apple, Inc."], "units":[1,1,8]}
 					   ]
 }
 {
@@ -18,10 +18,10 @@
 		"email": "Mew_nu@gmail.com",
 		"kyc_status": "not done",
 		"kyc_details":{"pan": "" },
-		"orders":[{"order_id":1, "order_status": "pending", "product_id":[2,3], "units":[5,1]},
-						 {"order_id":2, "order_status": "pending", "product_id":[7], "units":[6]},
-						 {"order_id":3, "order_status": "successful", "product_id":[11,7], "units": [2,8]},
-						 {"order_id":4, "order_status": "failed", "product_id":[3], "units":[10]}
+		"orders":[{ "order_id":1, "order_status": "Processing Order", "product_name":["GAIL India","Cipla"], "units":[5,1]},
+						 { "order_id":2, "order_status": "Processing Order", "product_name":["Tata Digital India Fund Direct Growth"], "units":[6]},
+						 { "order_id":3, "order_status": "Successful Order", "product_name":["Alphabet Inc. - Class A Shares ","Tata Digital India Fund Direct Growth"], "units": [2,8]},
+						 { "order_id":4, "order_status": "Failed Order", "product_name":["Cipla"], "units":[10]}
 					   ]
 }
 {
@@ -32,7 +32,7 @@
 		"email": "Br@gmail.com",
 		"kyc_status": "done",
 		"kyc_details":{"pan": "86tAe5tgy7797"},
-		"orders":[{"order_id":1,"order_status":"pending","product_id":[3,5,7],"units":[1,2,3]},
-						 {"order_id":2, "order_status": "failed","product_id":[10,4,12,13],"units": [1,2,2,8]}
+		"orders":[{ "order_id":1, "order_status":"Processing Order","product_name":["Cipla","Muthoot Finance","Tata Digital India Fund Direct Growth"],"units":[1,2,3]},
+						 { "order_id":2, "order_status": "Failed Order","product_name":["Starbucks Corporation","UPL","Apple, Inc.","Walt Disney Company"],"units": [1,2,2,8]}
 					   ]
 }
