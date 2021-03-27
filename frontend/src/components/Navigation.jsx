@@ -13,14 +13,7 @@ function Navigation(props) {
           <Nav className="mr-auto">
             <Nav.Link href="/explore/stocks">Explore</Nav.Link>
           </Nav>
-          <Form inline>
-            <FormControl
-              type="text"
-              placeholder="Search stocks and mutual funds"
-              className="mr-sm-2"
-            />
-            <Button variant="outline-info">Search</Button>
-          </Form>
+          
           <Button
             onClick={() => {
               document.getElementById("id01").style.display = "block";
