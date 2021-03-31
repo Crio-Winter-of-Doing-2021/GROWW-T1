@@ -2,24 +2,6 @@ import mongoose from 'mongoose';
 const users = require('../models/user_model.js')
 const pages = require('../models/page_model.js')
 const products = require('../models/product_model.js')
-const step=[{
-			id: "Greet",
-			message: "Hello there, this is Emilia. How may I help you?",
-			delay: 5,
-			trigger: "question",
-		  },{
-		  id: "Ask",
-		  message:"Anything else I can help you with?",
-		  trigger:"Options",
-		  },
-		  {
-		  id:"Options",
-		options:[{value:1,label:"No",trigger:"End"},{value:2,label:"Yes",trigger:"Greet"}]
-		  },{
-		  id: "End",
-		message: "See you later!",
-		end:true
-		  }];
 		  
 		  
 exports.getProducts = async(req, res) => {
@@ -68,7 +50,28 @@ await users.findOne({user_name:user},(err,usr) =>
 });
 }; 	
 
-    	
+ 
+ 
+ exports.getUser = async(req,res) => {
+var user=req.params.user;
+await users.findOne({user_name:user},(err,usr) =>
+{
+	if(err)
+	{
+		res.send(err);
+	}
+	else if(usr===null)
+	{
+		res.status(400).end("User not found!");
+	}
+	else
+	{
+		let obj={name:usr.user_name, phone_number:usr.phone_number, email:usr.email, kyc_status:usr.kyc_status}
+		res.status(200).send(obj);
+	}
+});
+}; 	
+  	
 
 
 exports.getPdtInfo =async(req,res) => {
@@ -105,8 +108,25 @@ await pages.findOne({page_name:result},(err,page) =>{
 	else
 	{
 		var items=page.subsections;
-		let st=0,q1=[],ar=[],steps=[];
-		steps=step;
+		let st=0,q1=[],ar=[]
+		const steps=[{
+			id: "Greet",
+			message: "Hello there, this is Emilia. How may I help you?",
+			delay: 5,
+			trigger: "question",
+		  },{
+		  id: "Ask",
+		  message:"Anything else I can help you with?",
+		  trigger:"Options",
+		  },
+		  {
+		  id:"Options",
+		options:[{value:1,label:"No",trigger:"End"},{value:2,label:"Yes",trigger:"Greet"}]
+		  },{
+		  id: "End",
+		message: "See you later!",
+		end:true
+		  }];
           for (let i = 0; i < page.subsections.length; i = i + 1) {
             q1.push({value:i+1, label: page.subsections[i].type, trigger: "qs"+st });
             st = st + 1;
@@ -146,8 +166,25 @@ exports.getPdtFaq=async(req,res) => {
 	else
 	{
 		var q=pdt.questions,a=pdt.answers;
-		let st=0,q1=[],ar=[],steps=[];
-		steps=step;
+		let st=0,q1=[],ar=[];
+		const steps=[{
+			id: "Greet",
+			message: "Hello there, this is Emilia. How may I help you?",
+			delay: 5,
+			trigger: "question",
+		  },{
+		  id: "Ask",
+		  message:"Anything else I can help you with?",
+		  trigger:"Options",
+		  },
+		  {
+		  id:"Options",
+		options:[{value:1,label:"No",trigger:"End"},{value:2,label:"Yes",trigger:"Greet"}]
+		  },{
+		  id: "End",
+		message: "See you later!",
+		end:true
+		  }];
           for (let i = 0; i <q.length; i = i + 1) {
             q1.push({value:i+1, label:q[i], trigger: "ans"+st });
             st = st + 1;
@@ -197,7 +234,25 @@ exports.getSelectedOrderFaq = async(req,res) =>{
     						{
     							if(page.subsections[j].type===status)
     							{
-									var q=page.subsections[j].questions,a=page.subsections[j].answers,steps=[];
+									var q=page.subsections[j].questions,a=page.subsections[j].answers;
+									const step=[{
+			id: "Greet",
+			message: "Hello there, this is Emilia. How may I help you?",
+			delay: 5,
+			trigger: "question",
+		  },{
+		  id: "Ask",
+		  message:"Anything else I can help you with?",
+		  trigger:"Options",
+		  },
+		  {
+		  id:"Options",
+		options:[{value:1,label:"No",trigger:"End"},{value:2,label:"Yes",trigger:"Greet"}]
+		  },{
+		  id: "End",
+		message: "See you later!",
+		end:true
+		  }];
 									steps=step;
 									let st=0,q1=[],ar=[];
 									  for (let i = 0; i <q.length; i = i + 1) {

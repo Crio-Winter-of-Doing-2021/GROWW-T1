@@ -10,6 +10,7 @@ router.get('/gold',PageCtrl.getProducts)
 router.get('/orders',PageCtrl.getProducts)
 
 router.get('/orders/:user',PageCtrl.getOrdersList)
+router.get('/profile/:user',PageCtrl.getUser)
 
 
 router.get('/stocks/:id',PageCtrl.getPdtInfo)
