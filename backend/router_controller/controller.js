@@ -257,7 +257,7 @@ exports.getSelectedOrderFaq = async(req,res) =>{
     							if(page.subsections[j].type===status)
     							{
 									var q=page.subsections[j].questions,a=page.subsections[j].answers;
-									const step=[{
+									const steps=[{
 			id: "Greet",
 			message: "Hello there, this is Emilia. How may I help you?",
 			delay: 5,
@@ -275,7 +275,6 @@ exports.getSelectedOrderFaq = async(req,res) =>{
 		message: "See you later!",
 		end:true
 		  }];
-									steps=step;
 									let st=0,q1=[],ar=[];
 									  for (let i = 0; i <q.length; i = i + 1) {
 										q1.push({value:i+1, label:q[i], trigger: "ans"+st });
