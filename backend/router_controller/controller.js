@@ -369,6 +369,44 @@ exports.loggingUser =async(req,res) => {
 
 
 
+
+
+exports.addOrder = async(req,res) =>{
+	await users.findOne({user_name:req.params.user})
+	.then(function(user){
+		if(user===null)
+		{
+			res.status(400).send("User not found");
+		}
+		else
+		{
+			let order={order_id:user.orders.length+1,order_status:"Processing",
+			productName:req.body.productName,units:req.body.units,
+			costs:[],total:0};
+			return order;
+		}
+	})
+	.then(function(order){
+		users.findOneAndUpdate({user_name:req.params.user},{$push:{orders:order}},{ useFindAndModify: false })
+		.then(data => {																							
+			if (!data) {																						
+		  res.status(404).send("Cannot place order. Maybe user was not found!");
+			} else {
+			console.log(data);																				
+			res.status(200).send("Order successfully placed");
+		  }
+		  })
+		  .catch(err => {
+			res.status(404).send(err);
+			});
+	},function(err){
+		res.status(400).send(err);
+	});	
+};
+
+
+
+
 exports.insertPageFaq = async(req,res) =>{
 await pages.findOne({page_name:req.params.pagename},(err,page) =>{
 		if(err)

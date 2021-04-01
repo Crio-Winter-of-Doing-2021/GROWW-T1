@@ -26,7 +26,7 @@ router.get('/faq_steps/orders',PageCtrl.getPageFaq)
 router.get('/faq_steps/product/:id',PageCtrl.getPdtFaq)
 
 router.get('/orders/:user/:id',PageCtrl.getSelectedOrderFaq)
-
+router.post('/orders/:user',PageCtrl.addOrder)
 router.post('/loggingUser',PageCtrl.loggingUser)
 
 router.post('/pages/:pagename',PageCtrl.insertPageFaq)
