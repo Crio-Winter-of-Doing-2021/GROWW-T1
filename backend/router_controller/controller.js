@@ -303,33 +303,21 @@ exports.getSelectedOrderFaq = async(req,res) =>{
 exports.loggingUser =async(req,res) => {
 	if(req.body.status==="logging in")
 	{
-		let username=req.body.username, password=req.body.password;
-		await users.find({user_name: req.body.username}, (err, user) =>{
+		let password=req.body.password;
+		await users.findOne({email: req.body.email}, (err, user) =>{
 			if(err)
 			{
 				return res.status(400).json({ success: false, error: err })
 			}
-			else if(!user.length)
+			else if(user===null)
 			{
-					let obj={user_name:req.body.username, phone_number:"", status: "logged in", password: req.body.password, email: "", kyc_status: "not done", kyc_details:{pan: ""},orders:[]};
-					let new_user=new users(obj);
-					if (!new_user){
-        				return res.status(400).json({ success: false, error: "Schema failed" })
-    				}
-					new_user.save()																							
-					.then(() => {
-						return res.status(201).send("New user registration saved successfully");
-					})
-					.catch(error => {
-						return res.status(404).send("Error: New user registration not done.");
-					})
-					res.status(200).send("New user registered successfully!");
+				res.status(404).send("You haven't registered. Sign in first");
 			}
 			else
 			{
-				if (user[0].password===password)
+				if (user.password===password)
 				{
-				users.findOneAndUpdate({user_name:req.body.username}, {status:"logged in"}, { useFindAndModify: false })
+				users.findOneAndUpdate({email:req.body.email}, {status:"logged in"}, { useFindAndModify: false })
     				.then(data => {																							
       				if (!data) {																						
         			res.status(404).send("Cannot update status . Maybe user was not found!");
@@ -352,7 +340,7 @@ exports.loggingUser =async(req,res) => {
 	}
 	else
 	{
-		users.findOneAndUpdate({user_name:req.body.username}, {status:"logged out"}, { useFindAndModify: false })
+		users.findOneAndUpdate({email:req.body.email}, {status:"logged out"}, { useFindAndModify: false })
     	.then(data => {																							
       		if (!data) {																						
         	res.status(404).send("Cannot update status . Maybe user was not found!");
@@ -365,6 +353,38 @@ exports.loggingUser =async(req,res) => {
       		}); 
 	}	
 };
+
+
+
+
+
+
+exports.registerUser =async(req,res) =>{
+	let obj={user_name:req.body.username, phone_number:req.body.phone_number, status: "logged in",
+	 password: req.body.password, email: req.body.email, kyc_status: req.body.kyc_status, kyc_details:{pan: req.body.pan},orders:[]};
+					users.find({email:req.body.email},(err,user)=>{
+						if(!user.length)
+						{
+							let new_user=new users(obj);
+							if (!new_user){
+								return res.status(400).json({ success: false, error: "Schema failed" })
+							}
+							new_user.save()																							
+							.then(() => {
+								return res.status(201).send("New user registration saved successfully");
+							})
+							.catch(error => {
+								return res.status(404).send("Error: New user registration not done.");
+							})
+						}
+						else
+						{
+							res.status(404).send("User already exits.");
+						}
+					});
+					
+};
+
 
 
 

@@ -106,7 +106,8 @@
 			"graph": "/Images/starbucks.png",
 			"image": "https://assets-netstorage.groww.in/intl-stocks/logos/SBUX.png"
 }
-{		"product_id": 11,
+{		
+		"product_id": 11,
 		"product_name": "Alphabet Inc. - Class A Shares ",
 		"Stock_price": "$2007.50",
 		"About": "Alphabet Inc. is an American multinational conglomerate, founded in 2015, through a reconstruction of Google. It is headquartered in California, United States. The company offers performance and brand advertising services in the US, the Middle East, Africa, Europe, the Asia-Pacific, Latin America and Canada. Its stocks trade on the NASDAQ Stock Exchange through two classes of shares, GOOG and GOOGL shares. GOOGL shares are its Class-A shares, which give investors an ownership stake as well as voting rights. In 2020, Alphabet’s share price stood as one of the eight highest stock prices in history. GOOGL shares are included as a component on several stock market indices, namely S&P 500, S&P 100 and NASDAQ-100. ",
