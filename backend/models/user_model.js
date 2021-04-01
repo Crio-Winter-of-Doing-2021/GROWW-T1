@@ -10,7 +10,7 @@ const users = new Schema(
 		email: {type:String},
 		kyc_status: {type:String},
 		kyc_details:{pan:{type:String}},
-		orders:[{order_id:{type:Number}, order_status: {type:String}, product_id:[{type:Number,ref:'products'}], units:[Number]}]
+		orders:[{order_id:{type:Number}, order_status: {type:String}, productName:[{type:String,ref:'products'}], units:[Number], costs:[Number], total:{type:Number}}]
 	},
     { timestamps: true })
 

@@ -31,28 +31,50 @@ exports.getProducts = async(req, res) => {
     	
     	
     	
- exports.getOrdersList = async(req,res) => {
+exports.getOrdersList = (req,res) => {
 var user=req.params.user;
-await users.findOne({user_name:user},(err,usr) =>
-{
-	if(err)
-	{
-		res.send(err);
-	}
-	else if(usr===null)
+users.findOne({user_name:user})
+.then(function(usr){
+	if(usr===null)
 	{
 		res.status(400).end("User not found!");
 	}
 	else
 	{
-		res.status(200).send(usr.orders);
+	let orders=usr.orders,i=0;
+	orders.forEach(function(order){
+	let end=orders.length,tot=0,arr=[];
+	products.find({product_name:{$in:order.productName}})
+			.then(function(pdt) {  
+			let j=0;
+             pdt.forEach(function(p){
+             let val=parseFloat(p.Stock_price.substring(1))*order.units[j];
+             arr.push(val);
+             j++;
+             tot=tot+val;
+             });
+              i++;
+              return arr;
+         })
+         .then(function(arr)
+         {		
+         order.costs=arr;
+         order.total=tot;
+         if(i===end)
+         {
+         	res.send(orders);
+         }
+         }, function(err) {
+res.status(400).send("Error occured");
+         });
+		});
 	}
-});
+},function(err){ res.status.send(err);});
 }; 	
 
  
  
- exports.getUser = async(req,res) => {
+exports.getUser = async(req,res) => {
 var user=req.params.user;
 await users.findOne({user_name:user},(err,usr) =>
 {
@@ -66,7 +88,7 @@ await users.findOne({user_name:user},(err,usr) =>
 	}
 	else
 	{
-		let obj={name:usr.user_name, phone_number:usr.phone_number, email:usr.email, kyc_status:usr.kyc_status}
+		let obj={name:usr.user_name, phone_number:usr.phone_number, email:usr.email, kyc_status:usr.kyc_status, kyc_details:usr.kyc_details}
 		res.status(200).send(obj);
 	}
 });

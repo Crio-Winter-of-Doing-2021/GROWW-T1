@@ -6,8 +6,8 @@
 		"email": "Brrr@gmail.com",
 		"kyc_status": "not done",
 		"kyc_details":{"pan": ""},
-		"orders":[{ "order_id":1, "order_status":"Successful Order", "product_name":["Muthoot Finance",13,"Axis Bluechip Fund Direct Plan Growth"], "units":[8,5,3]},
-						 { "order_id":2, "order_status":"Cancelled Order", "product_name":["Axis Bluechip Fund Direct Plan Growth","ICICI Bank","Apple, Inc."], "units":[1,1,8]}
+		"orders":[{ "order_id":1, "order_status":"Successful Order", "productName":["Muthoot Finance","Axis Bluechip Fund Direct Plan Growth"], "units":[8,5,3], "costs":[], "total":0},
+						 { "order_id":2, "order_status":"Cancelled Order", "productName":["Axis Bluechip Fund Direct Plan Growth","ICICI Bank","Apple, Inc."], "units":[1,1,8], "costs":[], "total":0}
 					   ]
 }
 {
@@ -15,13 +15,13 @@
 		"phone_number": "9898989898",
 		"status": "logged out",
 		"password": "Nyaaa",
-		"email": "Mew_nu@gmail.com",
+		"email": "Mewwww@gmail.com",
 		"kyc_status": "not done",
 		"kyc_details":{"pan": "" },
-		"orders":[{ "order_id":1, "order_status": "Processing Order", "product_name":["GAIL India","Cipla"], "units":[5,1]},
-						 { "order_id":2, "order_status": "Processing Order", "product_name":["Tata Digital India Fund Direct Growth"], "units":[6]},
-						 { "order_id":3, "order_status": "Successful Order", "product_name":["Alphabet Inc. - Class A Shares ","Tata Digital India Fund Direct Growth"], "units": [2,8]},
-						 { "order_id":4, "order_status": "Failed Order", "product_name":["Cipla"], "units":[10]}
+		"orders":[{ "order_id":1, "order_status": "Processing Order", "productName":["GAIL India","Cipla"], "units":[5,1], "costs":[], "total":0},
+						 { "order_id":2, "order_status": "Processing Order", "productName":["Tata Digital India Fund Direct Growth"], "units":[6], "costs":[], "total":0},
+						 { "order_id":3, "order_status": "Successful Order", "productName":["Alphabet Inc. - Class A Shares ","Tata Digital India Fund Direct Growth"], "units": [2,8], "costs":[], "total":0},
+						 { "order_id":4, "order_status": "Failed Order", "productName":["Cipla"], "units":[10], "costs":[], "total":0}
 					   ]
 }
 {
@@ -32,7 +32,6 @@
 		"email": "Br@gmail.com",
 		"kyc_status": "done",
 		"kyc_details":{"pan": "86tAe5tgy7797"},
-		"orders":[{ "order_id":1, "order_status":"Processing Order","product_name":["Cipla","Muthoot Finance","Tata Digital India Fund Direct Growth"],"units":[1,2,3]},
-						 { "order_id":2, "order_status": "Failed Order","product_name":["Starbucks Corporation","UPL","Apple, Inc.","Walt Disney Company"],"units": [1,2,2,8]}
-					   ]
+		"orders":[{ "order_id":1, "order_status":"Processing Order","productName":["Cipla","Muthoot Finance","Tata Digital India Fund Direct Growth"],"units":[1,2,3], "costs":[], "total":0},
+						 { "order_id":2, "order_status": "Failed Order","productName":["Starbucks Corporation","UPL","Apple, Inc.","Walt Disney Company"],"units": [1,2,2,8], "costs":[], "total":0} ]
 }
