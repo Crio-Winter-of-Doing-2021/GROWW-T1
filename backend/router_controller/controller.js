@@ -322,7 +322,7 @@ exports.loggingUser =async(req,res) => {
         			res.status(404).send("Cannot update status . Maybe user was not found!");
 			  		} else {
 			  		console.log(data);																				
-			  		res.status(200).send("User successfully logged in");
+			  		res.status(200).send(user.user_name);
 					}
 					})
 					.catch(err => {
