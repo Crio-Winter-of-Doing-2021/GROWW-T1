@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Card, Container } from "react-bootstrap";
-import { CustomChatbot, Navigation } from ".";
+import { Card, Container,Image } from "react-bootstrap";
+import { CustomChatbot, Navigation, Error } from ".";
 import { Link, withRouter } from "react-router-dom";
 
 function Gold(props) {
@@ -30,7 +30,7 @@ function Gold(props) {
       );
   }, []);
   console.log(items.graph);
-
+  
   return (
     <div className="page">
       <Navigation />
@@ -114,6 +114,7 @@ function Gold(props) {
           </Container>
         </div>
       </div>
+      
       <CustomChatbot data={props.steps} />
     </div>
   );

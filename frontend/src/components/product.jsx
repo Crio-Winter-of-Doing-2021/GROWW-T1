@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Container } from "react-bootstrap";
-import { CustomChatbot, Navigation } from ".";
+import { CustomChatbot, Navigation, Error } from ".";
 import { useParams } from 'react-router-dom';
 
 function Products(props) {
@@ -31,7 +31,9 @@ function Products(props) {
         }
       );
   }, []);
-
+  if(error!=null)
+  return(<Error/>);
+  else  
   return (
     <div className="products">
       <Navigation />

@@ -6,3 +6,7 @@ export {default as Home} from "./home";
 export {default as Navigation} from "./Navigation";
 export {default as Products} from "./product";
 export {default as Gold} from "./gold";
+export {default as Error} from "./404";
+export {default as Orders} from "./orders";
+export {default as Profile} from "./profile";
+export {default as Register} from "./register";

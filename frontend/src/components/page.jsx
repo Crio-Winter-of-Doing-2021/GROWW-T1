@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Row, Container } from "react-bootstrap";
-import { CustomChatbot, Navigation } from ".";
+import { CustomChatbot, Navigation, Error } from ".";
 import { Link, withRouter } from "react-router-dom";
 function Page(props) {
   const [error, setError] = useState(null);
@@ -28,7 +28,10 @@ function Page(props) {
         }
       );
   }, []);
-
+  if(error!=null)
+  return(<Error/>);
+  else
+  
   return (
     <div className="page">
       <Navigation />

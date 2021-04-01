@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Login (props) {
+function Register (props) {
   const [state , setState] = useState({
-    email : "",
-    password : ""
+    uname : "",
+    password : "",
+    email: "",
+    phone: "",
+    pan: ""
 })
 const handleChange = (e) => {
     const {id , value} = e.target   
@@ -21,22 +24,29 @@ const handleChange = (e) => {
 }
 const  sendDetailsToServer = () => {
     if(state.email.length && state.password.length) {
-       
         const payload={
-            "email":state.email,
+            "username":state.uname,
             "password":state.password,
-            "status": "logging in"
+            "phone_number": state.phone,
+            "email":state.email,
+            "kyc_status": "done",
+            "pan":state.pan
         }
-        axios.post("http://localhost:8080/loggingUser", payload)
+       if(state.pan.length===0)
+       {
+           payload.kyc_status="not done";
+      }
+      
+        
+        axios.post("http://localhost:8080/registerUser", payload)
             .then(function (response) {
-                if(response.status === 200){
-                  localStorage.setItem("token",response.data);
+                if(response.status === 201){
                     setState(prevState => ({
                         ...prevState,
                         'successMessage' : 'Registration successful. Redirecting to home page..'
                     }))
                     
-                    
+                    localStorage.setItem("token",state.uname);
                     window.location.reload();
                     
                    
@@ -55,9 +65,9 @@ const  sendDetailsToServer = () => {
   
     
         return (
-          <div id="id01" className="modal">
+          <div id="id02" className="modal">
           <span onClick={()=>{
-      document.getElementById('id01').style.display='none';
+      document.getElementById('id02').style.display='none';
       }}
         className="close" title="Close Modal">&times;</span>
         
@@ -68,18 +78,24 @@ const  sendDetailsToServer = () => {
             </div>
         
             <div className="container">
-              <label htmlFor="email"><b>E-Mail ID</b></label>
-              <input type="email" id="email" placeholder="Enter Email ID"  value={state.email} onChange={handleChange} required/>
+              <label htmlFor="uname"><b>Username</b></label>
+              <input type="text" id="uname" placeholder="Enter Username"  value={state.uname} onChange={handleChange} required/>
         
-              <label htmlFor="password"><b>Password</b></label>
+              <label htmlFor="psw"><b>Password</b></label>
               <input type="password" id="password" placeholder="Enter Password" value={state.password} onChange={handleChange} required/>
+              <label htmlFor="email"><b>E-mail id</b></label>
+              <input type="email" id="email" placeholder="Enter your e-mail id" value={state.email} onChange={handleChange} required/>
+              <label htmlFor="phone"><b>Phone number</b></label>
+              <input type="tel" id="phone" placeholder="Enter Phone Number" value={state.phone} onChange={handleChange} required/>
+              <label htmlFor="pan"><b>Pan Number</b></label>
+              <input type="text" id="pan" placeholder="Enter Pan Card Number" value={state.pan} onChange={handleChange} />
         
-              <button type="submit" className="login" onClick={handleSubmitClick}>Login</button>
+              <button type="submit" className="login" onClick={handleSubmitClick}>Register</button>
               
             </div>
         
             <div className="container" style={{backgroundColor:"#f1f1f1"}}>
-              <button type="button" onClick={()=>{document.getElementById('id01').style.display='none'}} className="cancelbtn">Cancel</button>
+              <button type="button" onClick={()=>{document.getElementById('id02').style.display='none'}} className="cancelbtn">Cancel</button>
               
             </div>
           </form>
@@ -87,4 +103,4 @@ const  sendDetailsToServer = () => {
         );
     
 }
-export default Login;
+export default Register;

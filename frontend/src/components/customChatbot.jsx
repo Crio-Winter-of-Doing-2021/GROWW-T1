@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Image } from "react-bootstrap";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 function CustomChatbot(props) {
@@ -6,24 +7,30 @@ function CustomChatbot(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [steps,setSteps] = useState([]);
 
+  
   console.log(props);
   useEffect(() => {
-    fetch(props.data)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setSteps(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+    const timer = setTimeout(() => fetch(props.data)
+    .then((res) => res.json())
+    .then(
+      (result) => {
+        setIsLoaded(true);
+        setSteps(result);
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    ), 3000);
+    return () => clearTimeout(timer);
+    
+    
+      
   }, []);
+ 
 
   console.log(steps.length);
   const config = {
@@ -45,19 +52,26 @@ function CustomChatbot(props) {
 
   console.log(steps);
 
-
+ 
   const img = "https://avatarfiles.alphacoders.com/547/thumb-54759.png";
   if (steps.length === 0) return null;
   else
     return (
-      <ThemeProvider theme={theme}>
+      
+        <ThemeProvider theme={theme}>
         <ChatBot
           //speechSynthesis={{ enable: true, lang: 'en' }}
+          enableMobileAutoFocus={true}
+          floating={true}
+          opened={true}
           steps={steps}
           {...config}
           botAvatar={img}
         />
       </ThemeProvider>
+
+      
+      
     );
 }
 

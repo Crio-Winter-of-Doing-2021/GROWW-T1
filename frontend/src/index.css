@@ -20,7 +20,7 @@ code {
 }
 
 /* Full-width inputs */
-input[type=text], input[type=password] {
+input {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -207,6 +207,17 @@ span.logo{
 .ml-auto{
   margin: auto;
 }
-.searchButton{
-  margin: 0 3%;
+
+.error-div{
+  text-align: center;
+  padding: 20%;
+}
+.prof{
+  text-align: center;
+  width: 30%;
+  margin-left: 35%;
+  margin-top: 18%;
+}
+.logButton{
+  margin: 10px;
 }
