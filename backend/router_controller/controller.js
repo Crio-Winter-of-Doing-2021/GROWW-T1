@@ -218,6 +218,15 @@ exports.getPdtFaq=async(req,res) => {
 		message: "See you later!",
 		end:true
 		  }];
+		  if(req.body.kyc_status!="done")
+		  {
+		  	q1.push({value:q.length+1,label:"How do I get my full kyc done",trigger:"a1"});
+		  	q1.push({value:q.length+2,label:"I don't have a pan card. Can I still invest?",trigger:"a2"});
+		  	q1.push({value:q.length+3,label:"Do you charge for processing kyc?",trigger:"a3"});
+		  	steps.push({id:"a1",message:"You can get your full KYC done by uploading the required documents. Your full KYC will be done along with your first investment. Tap on 'Upload Docs'.",trigger:"Ask"});
+		  	steps.push({id:"a2",message:"You cannot invest without a PAN card as per SEBI rules. Please get your PAN card made to start investing.",trigger:"Ask"});
+		  	steps.push({id:"a3",message:"No. We do not charge anything for processing your KYC. We do it for free along with your first investment.",trigger:"Ask"});
+		  }
           for (let i = 0; i <q.length; i = i + 1) {
             q1.push({value:i+1, label:q[i], trigger: "ans"+st });
             st = st + 1;
@@ -269,24 +278,34 @@ exports.getSelectedOrderFaq = async(req,res) =>{
     							{
 									var q=page.subsections[j].questions,a=page.subsections[j].answers;
 									const steps=[{
-			id: "Greet",
-			message: "Hello there, this is Emilia. How may I help you?",
-			delay: 5,
-			trigger: "question",
-		  },{
-		  id: "Ask",
-		  message:"Anything else I can help you with?",
-		  trigger:"Options",
-		  },
-		  {
-		  id:"Options",
-		options:[{value:1,label:"No",trigger:"End"},{value:2,label:"Yes",trigger:"Greet"}]
-		  },{
-		  id: "End",
-		message: "See you later!",
-		end:true
-		  }];
-									let st=0,q1=[],ar=[];
+						id: "Greet",
+						message: "Hello there, this is Emilia. How may I help you?",
+						delay: 5,
+						trigger: "question",
+					  },{
+					  id: "Ask",
+					  message:"Anything else I can help you with?",
+					  trigger:"Options",
+					  },
+					  {
+					  id:"Options",
+					options:[{value:1,label:"No",trigger:"End"},{value:2,label:"Yes",trigger:"Greet"}]
+					  },{
+					  id: "End",
+					message: "See you later!",
+					end:true
+					  }];
+					  let st=0,q1=[],ar=[];
+		  		if(req.body.kyc_status!="done")
+				  {
+				  	q1.push({value:q.length+1,label:"How do I get my full kyc done",trigger:"a1"});
+				  	q1.push({value:q.length+2,label:"I don't have a pan card. Can I still invest?",trigger:"a2"});
+				  	q1.push({value:q.length+3,label:"Do you charge for processing kyc?",trigger:"a3"});
+				  	steps.push({id:"a1",message:"You can get your full KYC done by uploading the required documents. Your full KYC will be done along with your first investment. Tap on 'Upload Docs'.",trigger:"Ask"});
+				  	steps.push({id:"a2",message:"You cannot invest without a PAN card as per SEBI rules. Please get your PAN card made to start investing.",trigger:"Ask"});
+				  	steps.push({id:"a3",message:"No. We do not charge anything for processing your KYC. We do it for free along with your first investment.",trigger:"Ask"});
+				  }
+									
 									  for (let i = 0; i <q.length; i = i + 1) {
 										q1.push({value:i+1, label:q[i], trigger: "ans"+st });
 										st = st + 1;
@@ -478,6 +497,11 @@ await pages.findOne({page_name:req.params.pagename},(err,page) =>{
 		}
 });
 };
+
+
+
+
+
 exports.insertProductFaq = async(req,res) => {
 	products.findOneAndUpdate(
    { product_id: req.params.id }, 
@@ -486,6 +510,183 @@ exports.insertProductFaq = async(req,res) => {
             res.send(err);
         } else {
             res.status(201).send("FAQ-Answer pair successfully added!");
+        }
+    });
+};
+
+
+
+
+
+
+exports.updatePageFaq = async(req,res) =>{
+await pages.findOne({page_name:req.params.pagename},(err,page) =>{
+		if(err)
+		{
+			res.send(err);
+		}
+		else if(page===null)
+		{
+			res.send("Page not found");
+		}
+		else
+		{
+			let subsection=req.body.subsection,subsections=page.subsections,f=0;
+			for(let i=0;i<page.subsections.length;i++)
+			{
+				if(subsections[i].type===subsection)
+				{
+					f=1;
+					let c=0;
+					for(let j=0;j<subsections[i].questions.length;j++)
+					{
+						if(subsections[i].questions[j]===req.body.oldquestion)
+						{
+								subsections[i].questions.splice(j,1);
+								subsections[i].answers.splice(j,1);
+								c=1;
+								break;
+						}
+					}
+					if(c===0)
+					{
+							res.status(404).send("Question or answer not found");
+							break;
+					}
+					else
+					{
+					subsections[i].questions.push(req.body.newquestion);
+					subsections[i].answers.push(req.body.newanswer);
+					pages.findOneAndUpdate({page_name:req.params.pagename},{subsections:subsections}, { useFindAndModify: false })
+					.then(data => {																							
+					  if (!data) {																				
+						res.status(404).send( `Cannot add page question to subsection with type=${subsection}. Maybe subsection was not found!`);
+					  } else {																
+					  res.status(201).send("Question-answer pair updated successfully!");}
+					})
+					.catch(err => {
+					  res.status(404).send(err);
+					});
+					break;
+					}
+				}
+			}
+			if(f===0)
+			{
+			res.status(400).send("Requested subsection not found");
+			}
+			
+		}
+});
+};
+
+
+
+
+
+
+
+exports.updateProductFaq =async(req,res) =>{
+	products.findOneAndUpdate(
+   { product_id: req.params.id }, 
+   { $pull: { questions: req.body.oldquestion ,answers:req.body.oldanswer} },(err, product) =>{
+        if (err) {
+            res.send(err);
+        } else {
+        	products.findOneAndUpdate(
+		   { product_id: req.params.id }, 
+		   { $push :{ questions: req.body.newquestion ,answers:req.body.newanswer} },(error, pdt) =>{
+				if (error) {
+				    res.send(error);
+				} else {
+					
+				    res.status(200).send("FAQ-Answer pair updated successfully!");
+				}
+			});
+        }
+    });
+};
+
+
+
+
+
+
+
+exports.deletePageFaq = async(req,res) =>{
+await pages.findOne({page_name:req.params.pagename},(err,page) =>{
+		if(err)
+		{
+			res.send(err);
+		}
+		else if(page===null)
+		{
+			res.send("Page not found");
+		}
+		else
+		{
+			let subsection=req.body.subsection,subsections=page.subsections,f=0;
+			for(let i=0;i<page.subsections.length;i++)
+			{
+				if(subsections[i].type===subsection)
+				{
+					f=1;
+					let c=0;
+					for(let j=0;j<subsections[i].questions.length;j++)
+					{
+						if(subsections[i].questions[j]===req.body.question)
+						{
+								subsections[i].questions.splice(j,1);
+								subsections[i].answers.splice(j,1);
+								c=1;
+								break;
+						}
+					}
+					if(c===0)
+					{
+						res.status(404).send("Question or answer not found!");
+						break;
+					}
+					else
+					{
+					pages.findOneAndUpdate({page_name:req.params.pagename},{subsections:subsections}, { useFindAndModify: false })
+					.then(data => {																							
+					  if (!data) {																				
+						res.status(404).send( `Cannot add page question to subsection with type=${subsection}. Maybe subsection was not found!`);
+					  } else {																
+					  res.status(201).send("Question-answer pair deleted successfully!");}
+					})
+					.catch(err => {
+					  res.status(404).send(err);
+					});
+					break;
+					}
+				}
+			}
+			if(f===0)
+			{
+			res.status(400).send("Requested subsection not found");
+			}
+			
+		}
+});
+};
+
+
+
+
+
+
+
+
+exports.deleteProductFaq = async(req,res) => {
+	products.findOneAndUpdate(
+   { product_id: req.params.id }, 
+   { $pull: { questions: req.body.question ,answers:req.body.answer} },(err, product) =>{
+        if (err) {
+            res.send(err);
+        } else {
+            res.status(200).send("FAQ-Answer pair deleted successfully!");
         }
     });
 };

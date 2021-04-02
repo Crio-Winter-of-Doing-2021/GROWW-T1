@@ -23,9 +23,9 @@ router.post('/faq_steps/gold',PageCtrl.getPageFaq)
 router.post('/faq_steps/us_stocks',PageCtrl.getPageFaq)
 router.post('/faq_steps/orders',PageCtrl.getPageFaq)
 
-router.get('/faq_steps/product/:id',PageCtrl.getPdtFaq)
+router.post('/faq_steps/product/:id',PageCtrl.getPdtFaq)
 
-router.get('/orders/:user/:id',PageCtrl.getSelectedOrderFaq)
+router.post('/orders/:user/:id',PageCtrl.getSelectedOrderFaq)
 
 router.post('/loggingUser',PageCtrl.loggingUser)
 router.post('/registerUser',PageCtrl.registerUser)
@@ -33,5 +33,8 @@ router.post('/orders/:user',PageCtrl.addOrder)
 
 router.post('/pages/:pagename',PageCtrl.insertPageFaq)
 router.post('/products/:id',PageCtrl.insertProductFaq)
-
+router.patch('/pages/:pagename', PageCtrl.updatePageFaq)
+router.patch('/products/:id',PageCtrl.updateProductFaq)
+router.delete('/pages/:pagename', PageCtrl.deletePageFaq)
+router.delete('/products/:id',PageCtrl.deleteProductFaq)
 module.exports = router

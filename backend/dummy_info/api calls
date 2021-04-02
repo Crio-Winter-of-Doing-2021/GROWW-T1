@@ -1,0 +1,54 @@
+GET PAGE FAQ STEPS
+curl -X POST http://localhost:8080/faq_steps/gold  -H "Content-type: application/json" -d '{"kyc_status":"done"}'
+
+
+GET PDT FAQ STEPS
+ curl -X POST http://localhost:8080/faq_steps/products/1  -H "Content-Type:application/json" -d '{"kyc_status":"not done"}'
+ OR
+  curl -X POST http://localhost:8080/faq_steps/products/1  -H "Content-Type:application/json" -d '{"kyc_status":"done"}'
+
+GET ORDER FAQ SELECTED PRODUCT-STATUS WISE
+ curl -X POST http://localhost:8080/orders/Brrr/1 -H "Content-type: application/json" -d '{"kyc_status":"done"}'
+
+
+LOGGING IN
+curl -X POST http://localhost:8080/loggingUser -H "Content-type: application/json" -d '{"email":"Brrr@gmail.com","password":"XD :V :","status":"logging in"}'
+WITH WRONG PWD...
+curl -X POST http://localhost:8080/loggingUser -H "Content-type: application/json" -d '{"email":"Brrr@gmail.com","password":"XD :V :3","status":"logging in"}
+
+GET PROFILE OF A LOGGED IN USER
+curl http://localhost:8080/profile/Abcd
+
+
+GET ORDER LIST FOR A USER ON LOGGING IN
+ curl http://localhost:8080/orders/Lia
+ 
+ 
+ 
+ MAKE A NEW ORDER FOR A USER
+ curl -X POST http://localhost:8080/orders/Lia -H "Content-type: application/json" -d '{"productName":["Walt Disney Company"],"units":[2]}'
+ curl -X POST http://localhost:8080/orders/Lia -H "Content-type: application/json" -d '{"productName":["Cipla","UPL"],"units":[4,4]}'
+
+ 
+ POST A PRODUCT QUESTION
+ curl -X POST http://localhost:8080/products/1  -H "Content-Type:application/json" -d '{"question":"Dummy question","answer":"Dummy answer"}'
+ 
+ UPDATE A PRODUCT QUESTION
+ curl -X PATCH  http://localhost:8080/products/1  -H "Content-Type:application/json" -d '{"newquestion":"Dummy question","newanswer":"Dummy answer","oldquestion":"Dummy question2","oldanswer":"Dummy answer2"}
+ 
+ 
+ DELETE A PRODUCT QUESTION
+  curl -X DELETE http://localhost:8080/products/1  -H "Content-Type:application/json" -d '{"question":"Dummy question","answer":"Dummy answer"}'
+  
+  
+ POST A PAGE QUESTION
+ curl -X POST http://localhost:8080/pages/stocks  -H "Content-Type:application/json" -d '{"subsection":"IPO","question":"Dummy question","answer":"Dummy answer"}'
+
+UPDATE A PAGE QUESTION
+curl -X PATCH http://localhost:8080/pages/stocks  -H "Content-Type:application/json" -d '{"subsection":"IPO","newquestion":"Dummy question","newanswer":"Dummy answer","oldquestion":"Dummy question3","oldanswer":"Dummy answer3"}'
+
+
+DELETE A PAGE QUESTION
+curl -X DELETE  http://localhost:8080/pages/stocks  -H "Content-Type:application/json" -d '{"subsection":"IPO","question":"Dummy question","answer":"Dummy answer"}
+
+
