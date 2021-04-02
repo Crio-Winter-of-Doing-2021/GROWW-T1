@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Col, Row, Container } from "react-bootstrap";
 import { CustomChatbot, Navigation, Error } from ".";
 import { Link, withRouter } from "react-router-dom";
+import auth from "../auth";
 function Page(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
