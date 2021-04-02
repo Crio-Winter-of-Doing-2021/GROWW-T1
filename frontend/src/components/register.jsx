@@ -53,6 +53,7 @@ const  sendDetailsToServer = () => {
                     }))
                     
                     localStorage.setItem("token",state.uname);
+                    localStorage.setItem("kycStatus",state.kyc_status);
                     window.location.reload();
                     
                    

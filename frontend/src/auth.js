@@ -3,11 +3,13 @@ import  { Component } from "react";
 class Auth extends Component{
   state= {
     authenticated: true,
-    username: ""
+    username: "",
+    kycStatus: ""
   }
     constructor(props) {
       super(props);
       const token=localStorage.getItem("token");
+      const kycStatus=localStorage.getItem("kycStatus");
       
       
       this.state.username=token;
@@ -27,6 +29,9 @@ class Auth extends Component{
     }
     user(){
       return this.state.username;
+    }
+    kyc(){
+      return this.state.kycStaus;
     }
   }
   

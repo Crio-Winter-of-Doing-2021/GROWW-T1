@@ -34,7 +34,8 @@ const  sendDetailsToServer = () => {
                   setLogin(<Alert variant="success">
                   Login successfull
                 </Alert>);
-                  localStorage.setItem("token",response.data);
+                  localStorage.setItem("token",response.data.user_name);
+                  localStorage.setItem("kycStatus",response.data.kyc_status);
                     setState(prevState => ({
                         ...prevState,
                         'successMessage' : 'Registration successful. Redirecting to home page..'
