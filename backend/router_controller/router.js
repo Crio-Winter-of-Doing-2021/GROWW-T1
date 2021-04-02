@@ -17,11 +17,11 @@ router.get('/stocks/:id',PageCtrl.getPdtInfo)
 router.get('/us_stocks/:id',PageCtrl.getPdtInfo)
 router.get('/mutual_funds/:id',PageCtrl.getPdtInfo)
 
-router.get('/faq_steps/stocks',PageCtrl.getPageFaq)
-router.get('/faq_steps/mutual_funds',PageCtrl.getPageFaq)
-router.get('/faq_steps/gold',PageCtrl.getPageFaq)
-router.get('/faq_steps/us_stocks',PageCtrl.getPageFaq)
-router.get('/faq_steps/orders',PageCtrl.getPageFaq)
+router.post('/faq_steps/stocks',PageCtrl.getPageFaq)
+router.post('/faq_steps/mutual_funds',PageCtrl.getPageFaq)
+router.post('/faq_steps/gold',PageCtrl.getPageFaq)
+router.post('/faq_steps/us_stocks',PageCtrl.getPageFaq)
+router.post('/faq_steps/orders',PageCtrl.getPageFaq)
 
 router.get('/faq_steps/product/:id',PageCtrl.getPdtFaq)
 

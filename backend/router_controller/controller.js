@@ -149,6 +149,17 @@ await pages.findOne({page_name:result},(err,page) =>{
 		message: "See you later!",
 		end:true
 		  }];
+		  if(req.body.kyc_status!="done")
+		  {
+		  	q1.push({value:0,label:"Kyc related questions",trigger:"qs"+(page.subsections.length)});
+		  	steps.push({id:"qs"+(page.subsections.length),options:[
+		  	{value:1,label:"How do I get my full kyc done",trigger:"a1"},
+		  	{value:2,label:"I don't have a pan card. Can I still invest?",trigger:"a2"},
+		  	{value:3,label:"Do you charge for processing kyc?",trigger:"a3"}]});
+		  	steps.push({id:"a1",message:"You can get your full KYC done by uploading the required documents. Your full KYC will be done along with your first investment. Tap on 'Upload Docs'.",trigger:"Ask"});
+		  	steps.push({id:"a2",message:"You cannot invest without a PAN card as per SEBI rules. Please get your PAN card made to start investing.",trigger:"Ask"});
+		  	steps.push({id:"a3",message:"No. We do not charge anything for processing your KYC. We do it for free along with your first investment.",trigger:"Ask"});
+		  }
           for (let i = 0; i < page.subsections.length; i = i + 1) {
             q1.push({value:i+1, label: page.subsections[i].type, trigger: "qs"+st });
             st = st + 1;
