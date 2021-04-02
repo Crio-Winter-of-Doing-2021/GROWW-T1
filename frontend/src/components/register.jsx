@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {Alert} from "react-bootstrap";
 
 function Register (props) {
   const [state , setState] = useState({
@@ -9,6 +10,7 @@ function Register (props) {
     phone: "",
     pan: ""
 })
+const[registered, setRegister]=useState("");
 const handleChange = (e) => {
     const {id , value} = e.target   
     setState(prevState => ({
@@ -22,6 +24,7 @@ const handleChange = (e) => {
         sendDetailsToServer()    ;
     
 }
+
 const  sendDetailsToServer = () => {
     if(state.email.length && state.password.length) {
         const payload={
@@ -41,6 +44,9 @@ const  sendDetailsToServer = () => {
         axios.post("http://localhost:8080/registerUser", payload)
             .then(function (response) {
                 if(response.status === 201){
+                  setRegister(<Alert variant="success">
+                  Registration successfull
+                </Alert>);
                     setState(prevState => ({
                         ...prevState,
                         'successMessage' : 'Registration successful. Redirecting to home page..'
@@ -51,11 +57,16 @@ const  sendDetailsToServer = () => {
                     
                    
                 } else{
-                    console.log("Some error ocurred");
+                 console.log(response);
+                  setRegister( <Alert variant="danger">
+                  {response.data}
+                </Alert>);
                 }
             })
             .catch(function (error) {
+
                 console.log(error);
+                setRegister( <Alert variant="danger">Registration unsuccessful. User already exists</Alert>);
             });    
     } else {
         props.showError('Please enter valid username and password')    
@@ -72,7 +83,7 @@ const  sendDetailsToServer = () => {
         className="close" title="Close Modal">&times;</span>
         
           
-          <form target="/explore/stocks" className="modal-content animate">
+          <form target="/explore/stocks" className="modal-content animate" onSubmit={handleSubmitClick}>
             <div className="imgcontainer">
               <img src="/Images/login-icon.jpg" alt="Avatar" className="avatar"/>
             </div>
@@ -90,12 +101,13 @@ const  sendDetailsToServer = () => {
               <label htmlFor="pan"><b>Pan Number</b></label>
               <input type="text" id="pan" placeholder="Enter Pan Card Number" value={state.pan} onChange={handleChange} />
         
-              <button type="submit" className="login" onClick={handleSubmitClick}>Register</button>
+              <button type="submit" className="login" >Register</button>
               
             </div>
+            <div>{registered}</div>
         
             <div className="container" style={{backgroundColor:"#f1f1f1"}}>
-              <button type="button" onClick={()=>{document.getElementById('id02').style.display='none'}} className="cancelbtn">Cancel</button>
+              <button type="button" onClick={()=>{document.getElementById('id02').style.display='none';setRegister("")}} className="cancelbtn">Cancel</button>
               
             </div>
           </form>

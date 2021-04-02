@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import {Alert} from "react-bootstrap";
 function Login (props) {
   const [state , setState] = useState({
     email : "",
@@ -13,6 +13,7 @@ const handleChange = (e) => {
         [id] : value
     }))
 }
+const[Logged, setLogin]=useState("");
  const handleSubmitClick = (e) => {
     e.preventDefault();
   
@@ -30,6 +31,9 @@ const  sendDetailsToServer = () => {
         axios.post("http://localhost:8080/loggingUser", payload)
             .then(function (response) {
                 if(response.status === 200){
+                  setLogin(<Alert variant="success">
+                  Login successfull
+                </Alert>);
                   localStorage.setItem("token",response.data);
                     setState(prevState => ({
                         ...prevState,
@@ -42,10 +46,14 @@ const  sendDetailsToServer = () => {
                    
                 } else{
                     console.log("Some error ocurred");
+                    setLogin( <Alert variant="danger">
+                  {response.data}
+                </Alert>);
                 }
             })
             .catch(function (error) {
                 console.log(error);
+                setLogin( <Alert variant="danger">Login unsuccessful. Incorrect username or password.</Alert>);
             });    
     } else {
         props.showError('Please enter valid username and password')    
@@ -62,7 +70,7 @@ const  sendDetailsToServer = () => {
         className="close" title="Close Modal">&times;</span>
         
           
-          <form target="/explore/stocks" className="modal-content animate">
+          <form target="/explore/stocks" className="modal-content animate" onSubmit={handleSubmitClick}>
             <div className="imgcontainer">
               <img src="/Images/login-icon.jpg" alt="Avatar" className="avatar"/>
             </div>
@@ -74,12 +82,13 @@ const  sendDetailsToServer = () => {
               <label htmlFor="password"><b>Password</b></label>
               <input type="password" id="password" placeholder="Enter Password" value={state.password} onChange={handleChange} required/>
         
-              <button type="submit" className="login" onClick={handleSubmitClick}>Login</button>
+              <button type="submit" className="login" >Login</button>
               
             </div>
+            <div>{Logged}</div>
         
             <div className="container" style={{backgroundColor:"#f1f1f1"}}>
-              <button type="button" onClick={()=>{document.getElementById('id01').style.display='none'}} className="cancelbtn">Cancel</button>
+              <button type="button" onClick={()=>{document.getElementById('id01').style.display='none';setLogin("")}} className="cancelbtn">Cancel</button>
               
             </div>
           </form>

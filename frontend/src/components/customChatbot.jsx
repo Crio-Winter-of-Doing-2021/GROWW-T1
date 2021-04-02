@@ -24,7 +24,7 @@ function CustomChatbot(props) {
         setIsLoaded(true);
         setError(error);
       }
-    ), 3000);
+    ), 1000);
     return () => clearTimeout(timer);
     
     
@@ -61,6 +61,7 @@ function CustomChatbot(props) {
         <ThemeProvider theme={theme}>
         <ChatBot
           //speechSynthesis={{ enable: true, lang: 'en' }}
+          
           enableMobileAutoFocus={true}
           floating={true}
           opened={true}

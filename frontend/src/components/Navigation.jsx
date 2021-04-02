@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
-import {Navbar, Form, Nav, Button, FormControl, Image, Dropdown} from "react-bootstrap";
+import {Navbar, Nav, Button, Image, Dropdown} from "react-bootstrap";
 import {Login,Register} from ".";
 import auth from "../auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

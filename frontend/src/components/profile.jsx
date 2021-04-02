@@ -35,6 +35,7 @@ function Profile(props)
       <div>
           <Navigation/>
     <Card className="prof">
+    <Card.Img  src="/Images/login-icon.jpg" />
     <Card.Header> Name: {items.name}</Card.Header>
     <ListGroup variant="flush">
       <ListGroup.Item>Phone number: {items.phone_number}</ListGroup.Item>

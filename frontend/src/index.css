@@ -214,10 +214,30 @@ span.logo{
 }
 .prof{
   text-align: center;
-  width: 30%;
-  margin-left: 35%;
-  margin-top: 18%;
+  max-width: 20%;
+  margin-left: 40%;
+  margin-top: 5%;
+  align-content: center;
 }
+
+
 .logButton{
   margin: 10px;
+}
+.alert{
+  text-align: center;
+}
+.tableDiv{
+  display: none;
+}
+.closeBut{
+  display: none;
+  border-radius: 100%;
+}
+.orderDiv{
+  text-align: center;
+  align-content: center;
+}
+.cardDiv{
+  margin: 5%;
 }
