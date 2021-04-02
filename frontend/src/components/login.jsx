@@ -62,7 +62,7 @@ const  sendDetailsToServer = () => {
         className="close" title="Close Modal">&times;</span>
         
           
-          <form target="/explore/stocks" className="modal-content animate">
+          <form target="/explore/stocks" className="modal-content animate" onSubmit={handleSubmitClick}>
             <div className="imgcontainer">
               <img src="/Images/login-icon.jpg" alt="Avatar" className="avatar"/>
             </div>
@@ -73,7 +73,7 @@ const  sendDetailsToServer = () => {
         
               <label htmlFor="password"><b>Password</b></label>
               <input type="password" id="password" placeholder="Enter Password" value={state.password} onChange={handleChange} required/>
-        
+        <input type='submit'/>
               <button type="submit" className="login" onClick={handleSubmitClick}>Login</button>
               
             </div>
