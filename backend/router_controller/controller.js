@@ -333,7 +333,7 @@ exports.loggingUser =async(req,res) => {
         			res.status(404).send("Cannot update status . Maybe user was not found!");
 			  		} else {
 			  		console.log(data);																				
-			  		res.status(200).send(user.user_name);
+			  		res.status(200).send(user);
 					}
 					})
 					.catch(err => {
@@ -381,7 +381,7 @@ exports.registerUser =async(req,res) =>{
 							}
 							new_user.save()																							
 							.then(() => {
-								return res.status(201).send("New user registration saved successfully");
+								return res.status(201).send(new_user);
 							})
 							.catch(error => {
 								return res.status(404).send("Error: New user registration not done.");
