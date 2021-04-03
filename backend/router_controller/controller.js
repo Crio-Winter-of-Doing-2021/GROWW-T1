@@ -307,7 +307,7 @@ exports.getPdtFaq = async (req, res) => {
 };
 
 exports.getSelectedOrderFaq = async (req, res) => {
-	await users.findOne({ user_name: req.params.user }, (err, user) => {
+  await users.findOne({ user_name: req.params.user }, (err, user) => {
     if (err) {
       res.status(400).send("Error occured");
     } else if (user === null) {
@@ -622,20 +622,10 @@ exports.updatePageFaq = async (req, res) => {
       for (let i = 0; i < page.subsections.length; i++) {
         if (subsections[i].type === subsection) {
           f = 1;
-          let c = 0;
-          for (let j = 0; j < subsections[i].questions.length; j++) {
-            if (subsections[i].questions[j] === req.body.oldquestion) {
-              subsections[i].questions.splice(j, 1);
-              subsections[i].answers.splice(j, 1);
-              c = 1;
-              break;
-            }
-          }
-          if (c === 0) {
-            res.status(404).send("Question or answer not found");
-            break;
-          } else {
-            subsections[i].questions.push(req.body.newquestion);
+            if (req.body.id<=subsections[i].questions.length && req.body.id>=1) {
+              subsections[i].questions.splice(req.body.id-1, 1);
+              subsections[i].answers.splice(req.body.id-1, 1);
+              subsections[i].questions.push(req.body.newquestion);
             subsections[i].answers.push(req.body.newanswer);
             pages
               .findOneAndUpdate(
@@ -659,8 +649,14 @@ exports.updatePageFaq = async (req, res) => {
               .catch((err) => {
                 res.status(404).send(err);
               });
+              break;
+            }
+
+          else {
+            res.status(404).send("Question or answer not found");
             break;
-          }
+          } 
+          break;
         }
       }
       if (f === 0) {
@@ -671,32 +667,53 @@ exports.updatePageFaq = async (req, res) => {
 };
 
 exports.updateProductFaq = async (req, res) => {
-  products.findOneAndUpdate(
-    { product_id: req.params.id },
-    { $pull: { questions: req.body.oldquestion, answers: req.body.oldanswer } },
-    (err, product) => {
-      if (err) {
-        res.send(err);
-      } else {
-        products.findOneAndUpdate(
-          { product_id: req.params.id },
-          {
-            $push: {
-              questions: req.body.newquestion,
-              answers: req.body.newanswer,
-            },
-          },
-          (error, pdt) => {
-            if (error) {
-              res.send(error);
-            } else {
-              res.status(200).send("FAQ-Answer pair updated successfully!");
-            }
-          }
-        );
-      }
-    }
-  );
+products.findOne({product_id:req.params.id},(err,pdt)=>{
+		if(err)
+		{
+			res.status(404).send(err);
+		}
+		else if(pdt===null)
+		{
+			res.status(404).send("Product not found!");
+		}
+		else
+		{
+			if(pdt.questions.length>=req.body.id && req.body.id>=1)
+			{
+				let oldquestion=pdt.questions[req.body.id-1],oldanswer=pdt.answers[req.body.id-1];
+				products.findOneAndUpdate(
+				{ product_id: req.params.id },
+				{ $pull: { questions: oldquestion, answers: oldanswer } },
+				(err, product) => {
+				  if (err) {
+					res.send(err);
+				  } else {
+					products.findOneAndUpdate(
+					  { product_id: req.params.id },
+					  {
+						$push: {
+						  questions: req.body.newquestion,
+						  answers: req.body.newanswer,
+						},
+					  },
+					  (error, pdt) => {
+						if (error) {
+						  res.send(error);
+						} else {
+						  res.status(200).send("FAQ-Answer pair updated successfully!");
+						}
+					  }
+					);
+				  }
+				}
+			  );
+			}
+			else
+			{
+				res.status(400).send("Question-answer not found");
+			}
+		}
+		});
 };
 
 exports.deletePageFaq = async (req, res) => {
@@ -712,20 +729,10 @@ exports.deletePageFaq = async (req, res) => {
       for (let i = 0; i < page.subsections.length; i++) {
         if (subsections[i].type === subsection) {
           f = 1;
-          let c = 0;
-          for (let j = 0; j < subsections[i].questions.length; j++) {
-            if (subsections[i].questions[j] === req.body.question) {
-              subsections[i].questions.splice(j, 1);
-              subsections[i].answers.splice(j, 1);
-              c = 1;
-              break;
-            }
-          }
-          if (c === 0) {
-            res.status(404).send("Question or answer not found!");
-            break;
-          } else {
-            pages
+            if (subsections[i].questions.length>= req.body.id && req.body.id>=1) {
+              subsections[i].questions.splice(req.body.id-1, 1);
+              subsections[i].answers.splice(req.body.id-1, 1);
+              pages
               .findOneAndUpdate(
                 { page_name: req.params.pagename },
                 { subsections: subsections },
@@ -749,6 +756,10 @@ exports.deletePageFaq = async (req, res) => {
               });
             break;
           }
+          else {
+            res.status(404).send("Question or answer not found!");
+            break;
+          }  
         }
       }
       if (f === 0) {
@@ -759,15 +770,36 @@ exports.deletePageFaq = async (req, res) => {
 };
 
 exports.deleteProductFaq = async (req, res) => {
-  products.findOneAndUpdate(
-    { product_id: req.params.id },
-    { $pull: { questions: req.body.question, answers: req.body.answer } },
-    (err, product) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.status(200).send("FAQ-Answer pair deleted successfully!");
-      }
-    }
-  );
+products.findOne({product_id:req.params.id},(err,pdt)=>{
+		if(err)
+		{
+			res.status(404).send(err);
+		}
+		else if(pdt===null)
+		{
+			res.status(404).send("Product not found!");
+		}
+		else
+		{
+			if(pdt.questions.length>=req.body.id && req.body.id>=1)
+			{
+				let question=pdt.questions[req.body.id-1],answer=pdt.answers[req.body.id-1];
+				products.findOneAndUpdate(
+				{ product_id: req.params.id },
+				{ $pull: { questions: question, answers: answer } },
+				(err, product) => {
+				  if (err) {
+					res.send(err);
+				  } else {
+					res.status(200).send("FAQ-Answer pair deleted successfully!");
+				  }
+				}
+			  );
+			}
+			else
+			{
+				res.status(404).send("Please enter a valid id");
+			}
+		}
+		});  
 };
