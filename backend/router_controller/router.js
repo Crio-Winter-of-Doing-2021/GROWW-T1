@@ -8,7 +8,6 @@ router.get('/mutual_funds',PageCtrl.getProducts)
 router.get('/us_stocks',PageCtrl.getProducts)
 router.get('/gold',PageCtrl.getProducts)
 router.get('/orders',PageCtrl.getProducts)
-
 router.get('/orders/:user',PageCtrl.getOrdersList)
 router.get('/profile/:user',PageCtrl.getUser)
 
