@@ -245,5 +245,9 @@ span.logo{
   margin-bottom: 2%;
 }
 span{
-  padding: 1%;
+  padding:1.2%;
+  margin:1%
+}
+.dispUnits{
+  background-color: #F5F5DC;
 }

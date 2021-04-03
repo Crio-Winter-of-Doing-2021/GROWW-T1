@@ -28,6 +28,7 @@ function Navigation(props) {
           
             console.log("Logged out");
             localStorage.removeItem("token");
+            localStorage.removeItem("kycStatus");
         
         }}>Logout</Dropdown.Item>
   </Dropdown.Menu>

@@ -36,7 +36,7 @@ function Products(props) {
       );
   }, []);
   const sendDetailsToServer = () => {
-    if (count > 0) {
+    if (auth.isAuthenticated() && auth.kyc()==="done") {
       axios
         .post("http://localhost:8080/orders/" + auth.user(), {
           productName: items.product_name,
@@ -55,8 +55,11 @@ function Products(props) {
           console.log(error);
           setAlert(<Alert variant="danger">Order unsuccessfull</Alert>);
         });
-    } else {
-      setAlert(<Alert variant="danger">Enter valid units</Alert>);
+    } else if(auth.isAuthenticated()){
+      setAlert(<Alert variant="danger">Please complete your KYC Registration</Alert>);
+    }
+    else{
+      setAlert(<Alert variant="danger">Please Log in to place a order</Alert>);
     }
   };
   if (error != null) return <Error />;
@@ -72,7 +75,7 @@ function Products(props) {
                 <Card.Body>
                   <Card.Title>{items.product_name}</Card.Title>
                   <Card.Text>{items.About}</Card.Text>
-                  {auth.isAuthenticated() ? (
+                  
                     <div className="placeOrderDiv">
                       <Button
                         onClick={() => {
@@ -82,7 +85,7 @@ function Products(props) {
                         <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
                       </Button>
 
-                      <span border="dark">Units: {count}</span>
+                      <span className="dispUnits">Units: {count}</span>
                       <Button
                         onClick={() => {
                           setCount(count + 1);
@@ -90,6 +93,7 @@ function Products(props) {
                       >
                         <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
                       </Button>
+                      <hr/>
                       <div>
                         <Button
                           onClick={() => {
@@ -101,7 +105,7 @@ function Products(props) {
                         </Button>
                       </div>
                     </div>
-                  ) : null}
+                  
                   
                 </Card.Body>
                 <div>{alert}</div>

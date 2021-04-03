@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
+import auth from "../auth";
 function CustomChatbot(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -10,7 +11,20 @@ function CustomChatbot(props) {
   
   console.log(props);
   useEffect(() => {
-    const timer = setTimeout(() => fetch(props.data)
+    const timer = setTimeout(() => fetch(props.data, {
+      
+      // Adding method type
+      method: "POST",
+        
+      // Adding body or contents to send
+      body: JSON.stringify({
+          kyc_status: auth.kyc()
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+        
+      })
     .then((res) => res.json())
     .then(
       (result) => {

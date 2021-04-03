@@ -4,7 +4,7 @@ class Auth extends Component{
   state= {
     authenticated: true,
     username: "",
-    kycStatus: ""
+    kycStatus: "not done"
   }
     constructor(props) {
       super(props);
@@ -13,6 +13,7 @@ class Auth extends Component{
       
       
       this.state.username=token;
+      this.state.kycStatus=kycStatus;
       if(token===null)
       {
         
@@ -31,7 +32,7 @@ class Auth extends Component{
       return this.state.username;
     }
     kyc(){
-      return this.state.kycStaus;
+      return this.state.kycStatus;
     }
   }
   
