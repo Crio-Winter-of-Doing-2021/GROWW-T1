@@ -10,3 +10,4 @@ export {default as Error} from "./404";
 export {default as Orders} from "./orders";
 export {default as Profile} from "./profile";
 export {default as Register} from "./register";
+export {default as PageNav} from "./pageNav";

@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { Home, Page, Products, Gold, Orders, Profile, Error } from "./components";
-
+import { AdminPage, AdminProduct} from "./admin-components";
 
 
 function App() {
@@ -28,6 +28,9 @@ function App() {
                   <Route path="/explore/us-stocks/:id" exact component={() => <Products data="http://localhost:8080/us_stocks/"  steps="http://localhost:8080/faq_steps/product/"/>} />
                   <Route path="/orders" exact component={() => <Orders data="http://localhost:8080/orders/"  steps="http://localhost:8080/faq_steps/orders"/>} />
                   <Route path="/profile" exact component={() => <Profile data="http://localhost:8080/profile/"  />} />
+                  <Route path="/admin" exact component={() =><Redirect to ="/admin/pages" ></Redirect>} />
+                  <Route path="/admin/pages" exact component={() => <AdminPage data="http://localhost:8080/"  />} />
+                  <Route path="/admin/products" exact component={() => <AdminProduct data="http://localhost:8080/"  />} />
                   <Route path="*" exact component={() => <Error  />} />
 
                 </Switch>
