@@ -37,7 +37,7 @@ function Order(props) {
   }, []);
   const stepProcess = (item) => {
     setSteps(
-      "http://localhost:8080/orders/" + auth.user() + "/" + item.order_id
+      "http://localhost:8000/orders/" + auth.user() + "/" + item.order_id
     );
     setKey(item.order_id);
   };
