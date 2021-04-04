@@ -139,6 +139,7 @@ function AdminProduct(props) {
       })
       .then(function(response) {
         setAddAlert(<Alert variant="success">Question successfully added</Alert>);
+        window.location.reload();
       })
       .catch(function(error) {
         console.log(error);
@@ -155,6 +156,7 @@ function AdminProduct(props) {
       })
       .then(function(response) {
         setEditAlert(<Alert variant="success">Question successfully edited</Alert>);
+        window.location.reload();
       })
       .catch(function(error) {
         console.log(error);
@@ -171,6 +173,7 @@ function AdminProduct(props) {
       })
       .then(function(response) {
         setDeleteAlert(<Alert variant="success">Question successfully deleted</Alert>);
+        window.location.reload();
       })
       .catch(function(error) {
         console.log(error);
