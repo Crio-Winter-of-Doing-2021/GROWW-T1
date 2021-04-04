@@ -10,7 +10,7 @@ exports.loggingUser = async (req, res) => {
       if (err) {
         return res.status(400).json({ success: false, error: err });
       } else if (user === null) {
-        res.status(404).send("You haven't registered. Sign in first");
+        res.status(401).send("You haven't registered. Sign in first");
       } else {
         if (user.password === password) {
           users

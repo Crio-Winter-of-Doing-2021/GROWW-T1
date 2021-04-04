@@ -16,8 +16,8 @@ app.use(morgan('dev'))
 db.once('open',() => console.log('Connected to db'));
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.use('/loggingUser',auth_router)
-app.use('/registerUser',auth_router)
+app.post('/loggingUser',auth_router)
+app.post('/registerUser',auth_router)
 app.use('/',page_router)
 
 app.get('/', (_, res) => {
