@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Image } from "react-bootstrap";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import auth from "../auth";
+import {Test} from ".";
 function CustomChatbot(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,8 +28,13 @@ function CustomChatbot(props) {
     .then((res) => res.json())
     .then(
       (result) => {
-        setIsLoaded(true);
+        result.push({id:"botQues",user:true,trigger:"botAns"});
+        result.push({id:"botAns",component: <Test/>,
+        asMessage: true,
+        end:true});
         setSteps(result);
+        setIsLoaded(true);
+        
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
@@ -68,21 +73,23 @@ function CustomChatbot(props) {
 
  
   const img = "https://avatarfiles.alphacoders.com/547/thumb-54759.png";
-  if (steps.length === 0) return null;
-  else
+ 
     return (
       
+      
         <ThemeProvider theme={theme}>
-        <ChatBot
-          //speechSynthesis={{ enable: true, lang: 'en' }}
-          
-          enableMobileAutoFocus={true}
-          floating={true}
-          opened={true}
-          steps={steps}
-          {...config}
-          botAvatar={img}
-        />
+          {isLoaded?
+           <ChatBot
+           //speechSynthesis={{ enable: true, lang: 'en' }}
+           
+           enableMobileAutoFocus={true}
+           floating={true}
+           opened={true}
+           steps={steps}
+           {...config}
+           botAvatar={img}
+         />:null}
+       
       </ThemeProvider>
 
       

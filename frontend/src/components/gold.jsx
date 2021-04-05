@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Card, Container,Image } from "react-bootstrap";
-import { CustomChatbot, Navigation, Error, PageNav } from ".";
-import { Link, withRouter } from "react-router-dom";
+import { Card, Container, } from "react-bootstrap";
+import { CustomChatbot, Navigation, Loading, PageNav } from ".";
+import { withRouter } from "react-router-dom";
+import Grow from "@material-ui/core/Grow";
+
 
 function Gold(props) {
   const [error, setError] = useState(null);
@@ -27,7 +29,7 @@ function Gold(props) {
           setIsLoaded(true);
           setError(error);
         }
-      );
+      )
   }, []);
   console.log(items.graph);
   
@@ -38,19 +40,25 @@ function Gold(props) {
       <div className="container">
         <div className="row align-items-center my-5">
           <Container>
-         
-              
+         {isLoaded?
+          <Grow in={true}>
+          <Card border="dark">
+                <Card.Img  src= {items.graph} />
+                <Card.Body>
+                  <Card.Title>{props.header}</Card.Title>
+                  <Card.Text>
+                  {items.About}
+                  </Card.Text>
+                </Card.Body>
                 
-                  <Card border="dark">
-                    <Card.Img  src= {items.graph} />
-                    <Card.Body>
-                      <Card.Title>{props.header}</Card.Title>
-                      <Card.Text>
-                      {items.About}
-                      </Card.Text>
-                    </Card.Body>
-                    
-                  </Card>
+              </Card>
+
+ 
+            
+             
+          </Grow>
+         :<Loading/>}
+             
                 
               
             

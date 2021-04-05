@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Card, Container, Button, Alert } from "react-bootstrap";
-import { CustomChatbot, Navigation, Error } from ".";
+import { CustomChatbot, Navigation, Error, Loading } from ".";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import Grow from "@material-ui/core/Grow";
 import axios from "axios";
 import auth from "../auth";
 function Products(props) {
@@ -70,46 +71,55 @@ function Products(props) {
         <div className="container">
           <div className="row align-items-center my-5">
             <Container>
+              {isLoaded?
+              <Grow in={true}>
               <Card border="dark">
-                <Card.Img src={items.graph} alt={"Loading image..."} />
-                <Card.Body>
-                  <Card.Title>{items.product_name}</Card.Title>
-                  <Card.Text>{items.About}</Card.Text>
-                  
-                    <div className="placeOrderDiv">
-                      <Button
-                        onClick={() => {
-                          count > 1 ? setCount(count - 1) : setCount(1);
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
-                      </Button>
-
-                      <span className="dispUnits">Units: {count}</span>
-                      <Button
-                        onClick={() => {
-                          setCount(count + 1);
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
-                      </Button>
-                      <hr/>
-                      <div>
-                        <Button
-                          onClick={() => {
-                            sendDetailsToServer();
-                          }}
-                          variant="primary"
-                        >
-                          Place Order
-                        </Button>
-                      </div>
-                    </div>
-                  
-                  
-                </Card.Body>
-                <div>{alert}</div>
-              </Card>
+                 <Card.Img src={items.graph} alt={"Loading image..."} />
+                 <Card.Body>
+                   <Card.Title>{items.product_name}</Card.Title>
+                   <Card.Text>{items.About}</Card.Text>
+                   
+                     <div className="placeOrderDiv">
+                       <Button
+                         onClick={() => {
+                           count > 1 ? setCount(count - 1) : setCount(1);
+                         }}
+                       >
+                         <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
+                       </Button>
+ 
+                       <span className="dispUnits">Units: {count}</span>
+                       <Button
+                         onClick={() => {
+                           setCount(count + 1);
+                         }}
+                       >
+                         <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
+                       </Button>
+                       <hr/>
+                       <div>
+                         <Button
+                           onClick={() => {
+                             sendDetailsToServer();
+                           }}
+                           variant="primary"
+                         >
+                           Place Order
+                         </Button>
+                       </div>
+                     </div>
+                   
+                   
+                 </Card.Body>
+                 <div>{alert}</div>
+               </Card>
+ 
+ 
+              </Grow>:<Loading/>}
+             
+             
+              
+              
             </Container>
           </div>
         </div>

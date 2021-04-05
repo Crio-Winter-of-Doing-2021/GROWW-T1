@@ -5,8 +5,8 @@ function adminNav(props)
 {
     return(
       <>
-      <Navbar bg="dark" variant="dark">
-          <Navbar.Brand style={{textAlign:"center"}} href="/"><Image src="https://groww.in/favicon-32x32-groww.ico"></Image> <span className="logo">GROWW Admin Panel</span>  </Navbar.Brand>
+      <Navbar bg="dark" variant="dark" >
+          <Navbar.Brand  href="/"><Image src="https://groww.in/favicon-32x32-groww.ico"></Image> <span className="logo">GROWW Admin Panel</span>  </Navbar.Brand>
           
         </Navbar>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
