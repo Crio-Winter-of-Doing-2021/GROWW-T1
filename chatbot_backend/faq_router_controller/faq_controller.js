@@ -362,7 +362,14 @@ if(err)
                 	result.push("You cannot invest without a PAN card as per SEBI rules. Please get your PAN card made to start investing.");
                 	result.push("No. We do not charge anything for processing your KYC. We do it for free along with your first investment.");
                 	var matches = stringSimilarity.findBestMatch(req.body.question, compare);
-                	res.status(200).send(result.splice(matches.bestMatchIndex,1));
+                	if(matches.bestMatch.rating>0.34)
+                	{
+                		res.status(200).send(result.splice(matches.bestMatchIndex,1));
+                	}
+                	else
+                	{
+                		res.status(200).send("Sorry we didn't get that. Try asking something more relevant that's related to our website.");
+                	}
                 }
                 });
 	}
