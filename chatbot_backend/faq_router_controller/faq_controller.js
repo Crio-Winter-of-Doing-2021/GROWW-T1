@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import stringSimilarity from "string-similarity";
 const users = require("../models/user_model.js");
 const pages = require("../models/page_model.js");
 const products = require("../models/product_model.js");
@@ -306,4 +307,59 @@ exports.getSelectedOrderFaq = async (req, res) => {
       }
     }
   });
+};
+
+exports.searchFaq = async(req,res) =>{
+let compare=[],result=[];
+await products.find({},(err,data)=>{
+if(err)
+	{
+	res.status(404).send(err);
+	}
+	else if(!data.length)
+	{
+		res.status(404).send("Question was not found!");
+	}
+	else
+	{
+                for(let i=0;i<data.length;i++)
+                {
+                	let questions=data[i].questions,answers=data[i].answers;
+                	for(let j=0;j<questions.length;j++)
+                	{
+                		compare.push(questions[j]);
+                		result.push(answers[j]);
+                		}
+                }
+                pages.find({},(err,page) =>{
+                if(err)
+                {
+                	res.status(404).send(err);
+                }
+                else if(!page.length)
+                {
+       				res.status(404).send("Question was not found!");         	
+                }
+                else
+                {
+                	for(let i=0;i<page.length;i++)
+                	{
+                		let subsections=page[i].subsections;
+                		for(let j=0;j<subsections.length;j++)
+                		{
+                			let qs=subsections[j].questions,as=subsections[j].answers;
+                			for(let k=0;k<qs.length;k++)
+                			{
+                				compare.push(qs[k]);
+                				result.push(as[k]);
+                			}
+                		}
+                	}
+                	var matches = stringSimilarity.findBestMatch(req.body.question, compare);
+                	res.status(200).send(result.splice(matches.bestMatchIndex,1));
+                }
+                });
+	}
+});
+
 };

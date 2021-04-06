@@ -12,4 +12,5 @@ router.post("/faq_steps/product/:id", PageCtrl.getPdtFaq);
 
 router.post("/orders/:user/:id", PageCtrl.getSelectedOrderFaq);
 
+router.post("/faq_steps",PageCtrl.searchFaq);
 module.exports = router;
