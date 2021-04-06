@@ -1,3 +1,8 @@
+:root {
+	
+	--cyan: #00dbf9;
+	--blue: #4794EA;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,12 +19,6 @@ code {
 * {
   box-sizing: border-box;
 }
-/* The Modal (background) */
-.modal-content {
-  border: 3px solid #f1f1f1;
-}
-
-/* Full-width inputs */
 input {
   width: 100%;
   padding: 12px 20px;
@@ -28,6 +27,17 @@ input {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+span{
+  padding:1.2%;
+  margin:1%
+}
+/* The Modal (background) */
+.modal-content {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+
 
 /* Set a style for all buttons */
 .login {
@@ -161,31 +171,38 @@ span.logo{
   }
 }
 
-
+/*Navbar of all pages*/
 .navbar{
   padding-left: 20%;
   padding-right: 20%;
 }
+
+/*invest di8v in home page*/
 .invest{
   
   padding-top: 60%;
   padding-right: 60%;
 }
+/* Getting started button*/
 .started{
   padding: 5%;
 }
+
+/*card image*/
 .card-img-top{
   width: 250px;
   height: 250px;
   
 }
-
+/*cards*/
 .card{
   box-shadow: 5px 10px 8px #888888;
   margin-bottom: 10%;
   top:0;
   
 }
+
+/*cards in the page.jsx part*/
 .pageCard:hover{
   top:10px;
 }
@@ -207,11 +224,13 @@ span.logo{
 .ml-auto{
   margin: auto;
 }
-
+/*error page*/
 .error-div{
   text-align: center;
   padding: 20%;
 }
+
+/*profile page*/
 .prof{
   text-align: center;
   max-width: 20%;
@@ -224,9 +243,13 @@ span.logo{
 .logButton{
   margin: 10px;
 }
+
+/*successfull and unsuccessful alerts*/
 .alert{
   text-align: center;
 }
+
+/*order's page table*/
 .tableDiv{
   display: none;
 }
@@ -234,6 +257,8 @@ span.logo{
   display: none;
   border-radius: 100%;
 }
+
+/*orders page*/
 .orderDiv{
   text-align: center;
   align-content: center;
@@ -244,10 +269,73 @@ span.logo{
 .placeOrderDiv{
   margin-bottom: 2%;
 }
-span{
-  padding:1.2%;
-  margin:1%
-}
+/*Units part of products page*/
 .dispUnits{
   background-color: #F5F5DC;
+}
+
+
+/* Page Loading */
+
+
+
+
+
+
+
+.loadingContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80vh;
+	
+}
+
+
+.loadChild{
+  width: 1vw;
+height: 1vw;
+border-radius: 100%;
+margin: 0.5vw;
+background-image: linear-gradient(145deg, rgba(255,255,255,0.5) 0%, rgba(0,0,0,0) 100%);
+animation: bounce 1.5s 0.5s linear infinite;
+
+}
+
+.blue1 {
+	background-color: var(--blue);
+}
+
+.cyan1 {
+	background-color: var(--cyan);
+	animation-delay: 0.1s;
+}
+
+.blue2 {
+	background-color: var(--blue);
+	animation-delay: 0.2s;
+}
+
+.cyan2 {
+	background-color: var(--cyan);
+	animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+	0%, 50%, 100% {
+		transform: scale(1);
+		filter: blur(0px);
+	}
+	25% {
+		transform: scale(0.6);
+		filter: blur(3px);
+	}
+	75% {
+		filter: blur(3px);
+		transform: scale(1.4);
+	}
 }

@@ -1,7 +1,9 @@
 import React , {useState, useEffect} from "react";
-import {Error, Navigation} from ".";
+import {Error, Loading, Navigation} from ".";
 import {Card, ListGroup} from "react-bootstrap";
+import {withRouter} from "react-router-dom";
 import auth from "../auth";
+import Groww from "@material-ui/core/Grow";
 function Profile(props)
 {
     const [error, setError] = useState(null);
@@ -34,15 +36,21 @@ function Profile(props)
   return (
       <div>
           <Navigation/>
-    <Card className="prof">
-    <Card.Img  src="/Images/login-icon.jpg" />
-    <Card.Header> Name: {items.name}</Card.Header>
-    <ListGroup variant="flush">
-      <ListGroup.Item>Phone number: {items.phone_number}</ListGroup.Item>
-      <ListGroup.Item>E-Mail: {items.email}</ListGroup.Item>
-      <ListGroup.Item>Pan number: {pan}</ListGroup.Item>
-    </ListGroup>
-  </Card>
+          {isLoaded?
+          <Groww in={true}>
+            <Card className="prof">
+          <Card.Img  src="/Images/login-icon.jpg" />
+          <Card.Header> Name: {items.name}</Card.Header>
+          <ListGroup variant="flush">
+            <ListGroup.Item>Phone number: {items.phone_number}</ListGroup.Item>
+            <ListGroup.Item>E-Mail: {items.email}</ListGroup.Item>
+            <ListGroup.Item>Pan number: {pan}</ListGroup.Item>
+          </ListGroup>
+        </Card>
+
+          </Groww>
+          :<Loading/>}
+    
 
       </div>
       
@@ -50,4 +58,4 @@ function Profile(props)
   );
 
 }
-export default Profile;
+export default withRouter(Profile);

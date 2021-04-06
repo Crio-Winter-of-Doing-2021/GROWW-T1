@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import auth from "../auth";
-import { Navigation, CustomChatbot, Error } from ".";
+import { Navigation, CustomChatbot, Error, Loading } from ".";
 import { Button, Card, Container, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp } from '@fortawesome/free-solid-svg-icons'
-
+import Grow from "@material-ui/core/Grow";
 function Order(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -84,49 +84,55 @@ function Order(props) {
   return (
     <div>
       <Navigation />
+      {isLoaded?
       <Container className="orderDiv">
-        {items.map((item) => (
-          <Card border="dark" className="cardDiv" key={item.order_id}>
-            <Card.Body>
-              <Card.Text>Order ID: {item.order_id}</Card.Text>
-              <Card.Text>Status: {item.order_status}</Card.Text>
-              <Card.Text>Price: {item.total}</Card.Text>
-              <Button
-               id={"but"+item.order_id}
-                onClick={() => {
-                  document.getElementById("order"+item.order_id).style.display="block";
-                  document.getElementById("but"+item.order_id).style.display="none";
-                  document.getElementById("close"+item.order_id).style.display="inline-block";
-                  stepProcess(item);
-                  
-                 
-                }}
-                variant="primary"
-              >
-                Know more
-              </Button>
-              
-              {tableProcess(item)}
-              <Button
-              className="closeBut"
-               id={"close"+item.order_id}
-                onClick={() => {
-                  document.getElementById("order"+item.order_id).style.display="none";
-                  document.getElementById("but"+item.order_id).style.display="inline-block";
-                  document.getElementById("close"+item.order_id).style.display="none";
-                  setKey(0);
-                  setSteps(props.steps);
-                 
-                }}
-                variant="primary"
-              ><FontAwesomeIcon icon={faSortUp} ></FontAwesomeIcon></Button>
-             
-              
-            </Card.Body>
+      {items.map((item) => (
+        <Grow  key={item.order_id} in={true}>
+          <Card border="dark" className="cardDiv">
+          <Card.Body>
+            <Card.Text>Order ID: {item.order_id}</Card.Text>
+            <Card.Text>Status: {item.order_status}</Card.Text>
+            <Card.Text>Price: {item.total}</Card.Text>
+            <Button
+             id={"but"+item.order_id}
+              onClick={() => {
+                document.getElementById("order"+item.order_id).style.display="block";
+                document.getElementById("but"+item.order_id).style.display="none";
+                document.getElementById("close"+item.order_id).style.display="inline-block";
+                stepProcess(item);
+                
+               
+              }}
+              variant="primary"
+            >
+              Know more
+            </Button>
+            
+            {tableProcess(item)}
+            <Button
+            className="closeBut"
+             id={"close"+item.order_id}
+              onClick={() => {
+                document.getElementById("order"+item.order_id).style.display="none";
+                document.getElementById("but"+item.order_id).style.display="inline-block";
+                document.getElementById("close"+item.order_id).style.display="none";
+                setKey(0);
+                setSteps(props.steps);
+               
+              }}
+              variant="primary"
+            ><FontAwesomeIcon icon={faSortUp} ></FontAwesomeIcon></Button>
+           
+            
+          </Card.Body>
 
-          </Card>
-        ))}
-      </Container>
+        </Card>
+
+        </Grow>
+        
+      ))}
+    </Container>:<Loading/>}
+      
       <CustomChatbot key={uniqueKey} data={steps} />
     </div>
   );

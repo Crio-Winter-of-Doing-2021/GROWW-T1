@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import {Navbar, Nav, Button, Image, Dropdown} from "react-bootstrap";
 import {Login,Register} from ".";
 import auth from "../auth";
@@ -48,7 +48,7 @@ function Navigation(props) {
       <Navbar bg="dark" variant="dark">
           <Navbar.Brand href="/"><Image src="https://groww.in/favicon-32x32-groww.ico"></Image> <span className="logo">GROWW</span>  </Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="/explore/stocks">Explore</Nav.Link>
+           <Link className="nav-link" to="/explore/stocks">Explore</Link>
           </Nav>
           
           <Button
