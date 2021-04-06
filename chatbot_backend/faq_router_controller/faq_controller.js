@@ -355,6 +355,12 @@ if(err)
                 			}
                 		}
                 	}
+                	compare.push("How do I get my full kyc done");
+                	compare.push("I don't have a pan card. Can I still invest?");
+                	compare.push("Do you charge for processing kyc?");
+                	result.push("You can get your full KYC done by uploading the required documents. Your full KYC will be done along with your first investment. Tap on 'Upload Docs'.");
+                	result.push("You cannot invest without a PAN card as per SEBI rules. Please get your PAN card made to start investing.");
+                	result.push("No. We do not charge anything for processing your KYC. We do it for free along with your first investment.");
                 	var matches = stringSimilarity.findBestMatch(req.body.question, compare);
                 	res.status(200).send(result.splice(matches.bestMatchIndex,1));
                 }
