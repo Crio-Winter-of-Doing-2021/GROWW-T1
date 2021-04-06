@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Row, Container } from "react-bootstrap";
 import { CustomChatbot, Navigation, Error, PageNav,Loading } from ".";
+import {withRouter, Link} from "react-router-dom";
 
 
 
@@ -54,9 +55,9 @@ function Page(props) {
                         <Card.Body>
                           <Card.Title>{item.product_name}</Card.Title>
                           <Card.Text>
-                            <Card.Link href={props.loc + item.product_id}>
+                            <Link className="card-link" to={props.loc + item.product_id}>
                               For more details
-                            </Card.Link>
+                            </Link>
                           </Card.Text>
                         </Card.Body>
                         <Card.Footer>
@@ -82,4 +83,4 @@ function Page(props) {
     );
 }
 
-export default Page;
+export default withRouter(Page);

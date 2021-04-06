@@ -1,6 +1,7 @@
 import React , {useState, useEffect} from "react";
 import {Error, Loading, Navigation} from ".";
 import {Card, ListGroup} from "react-bootstrap";
+import {withRouter} from "react-router-dom";
 import auth from "../auth";
 import Groww from "@material-ui/core/Grow";
 function Profile(props)
@@ -57,4 +58,4 @@ function Profile(props)
   );
 
 }
-export default Profile;
+export default withRouter(Profile);
