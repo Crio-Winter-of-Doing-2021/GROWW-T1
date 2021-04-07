@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run chatbot\" \" npm run backend\" \"npm run frontend\"",
+    "start": "concurrently \"npm run chatbot\" \" npm run backend\" ",
     "chatbot": "npm start --prefix ../chatbot_backend",
     "backend": "nodemon server.js --exec babel-node --presets env",
     "frontend": "npm start --prefix ../frontend",
