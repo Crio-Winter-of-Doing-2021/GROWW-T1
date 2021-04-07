@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import ChatBot from "react-simple-chatbot";
+import ChatBot , { Loading }from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import auth from "../auth";
-import {Test} from ".";
+import {BotAnswer} from ".";
+
 function CustomChatbot(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [steps,setSteps] = useState([]);
+  
+  
 
   
   console.log(props);
@@ -29,9 +32,11 @@ function CustomChatbot(props) {
     .then(
       (result) => {
         result.push({id:"botQues",user:true,trigger:"botAns"});
-        result.push({id:"botAns",component: <Test/>,
-        asMessage: true,
-        end:true});
+        
+        result.push({id:"botAns",component: <BotAnswer/>,
+        asMessage:true,
+        waitAction:true,
+       trigger:"Ask"});
         setSteps(result);
         setIsLoaded(true);
         

@@ -11,5 +11,5 @@ export {default as Orders} from "./orders";
 export {default as Profile} from "./profile";
 export {default as Register} from "./register";
 export {default as PageNav} from "./pageNav";
-export {default as Test} from "./test";
+export {default as BotAnswer} from "./botAnswer";
 export {default as Loading} from "./loading";
