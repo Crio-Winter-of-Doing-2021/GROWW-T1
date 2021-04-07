@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
 import {Redirect,Route} from "react-router-dom";
+import auth from "../auth";
 function Login(props) {
   const [state, setState] = useState({
     email: "",
@@ -36,13 +37,17 @@ function Login(props) {
             setLoginStatus(true);
             localStorage.setItem("token", response.data.user_name);
             localStorage.setItem("kycStatus", response.data.kyc_status);
+           
             setState((prevState) => ({
               ...prevState,
               successMessage:
                 "Registration successful. Redirecting to home page..",
             }));
+            window.location.reload();
           } else {
             console.log("Some error ocurred");
+            
+          
             setLogin(<Alert variant="danger">{response.data}</Alert>);
           }
         })
