@@ -368,11 +368,11 @@ if(err)
                 	var matches = stringSimilarity.findBestMatch(req.body.question, compare);
                 	if(matches.bestMatch.rating>0.34)
                 	{
-                		res.status(200).send(result.splice(matches.bestMatchIndex,1));
+                		res.send({answer:result.splice(matches.bestMatchIndex,1)});
                 	}
                 	else
                 	{
-                		res.status(200).send("Sorry we didn't get that. Try asking something more relevant that's related to our website.");
+                		res.send({answer:"Sorry we didn't get that. Try asking something more relevant that's related to our website."});
                 	}
                 }
                 });
