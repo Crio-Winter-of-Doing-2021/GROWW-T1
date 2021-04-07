@@ -37,9 +37,7 @@ function App() {
                 </Switch>
         <footer />
       </Router>
-      <Router>
-
-      </Router>
+      
 
     </div>
   );

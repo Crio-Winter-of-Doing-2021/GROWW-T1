@@ -15,7 +15,7 @@ function Login(props) {
     }));
   };
   const [Logged, setLogin] = useState("");
-  const [Status, setLoginStatus] = useState(false);
+
   const handleSubmitClick = (e) => {
     e.preventDefault();
 
@@ -33,16 +33,20 @@ function Login(props) {
         .then(function(response) {
           if (response.status === 200) {
             setLogin(<Alert variant="success">Login successfull</Alert>);
-            setLoginStatus(true);
+            
             localStorage.setItem("token", response.data.user_name);
             localStorage.setItem("kycStatus", response.data.kyc_status);
+           
             setState((prevState) => ({
               ...prevState,
               successMessage:
                 "Registration successful. Redirecting to home page..",
             }));
+            window.location.reload();
           } else {
             console.log("Some error ocurred");
+            
+          
             setLogin(<Alert variant="danger">{response.data}</Alert>);
           }
         })
@@ -111,9 +115,7 @@ function Login(props) {
         </div>
         <div>{Logged}</div>
 
-        <Route exact path="/">
-          {Status ? <Redirect to="/explore/stocks" /> : null}
-        </Route>
+        
 
         <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
           <button
