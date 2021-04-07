@@ -33,6 +33,7 @@ exports.getPageFaq = async (req, res) => {
           options: [
             { value: 1, label: "No", trigger: "End" },
             { value: 2, label: "Yes", trigger: "Greet" },
+            { value:3, label:"I'd like to type my question",trigger:"botQues"}
           ],
         },
         {
@@ -143,6 +144,7 @@ exports.getPdtFaq = async (req, res) => {
           options: [
             { value: 1, label: "No", trigger: "End" },
             { value: 2, label: "Yes", trigger: "Greet" },
+            { value:3, label:"I'd like to type my question",trigger:"botQues"}
           ],
         },
         {
@@ -239,6 +241,8 @@ exports.getSelectedOrderFaq = async (req, res) => {
                       options: [
                         { value: 1, label: "No", trigger: "End" },
                         { value: 2, label: "Yes", trigger: "Greet" },
+                        { value:3, label:"I'd like to type my question",trigger:"botQues"}
+                        
                       ],
                     },
                     {
