@@ -36,7 +36,7 @@ exports.getOrdersList = (req, res) => {
   users.findOne({ user_name: user }).then(
     function (usr) {
       if (usr === null) {
-        res.status(400).end("User not found!");
+        res.status(404).end("User not found!");
       } else {
         let orders = usr.orders,
           i = 0;
@@ -85,7 +85,7 @@ exports.getUser = async (req, res) => {
     if (err) {
       res.send(err);
     } else if (usr === null) {
-      res.status(400).end("User not found!");
+      res.status(404).send("User not found!");
     } else {
       let obj = {
         name: usr.user_name,
@@ -104,7 +104,7 @@ exports.getPdtInfo = async (req, res) => {
     if (err) {
       res.status(400).send("Error occured");
     } else if (pdt === null) {
-      res.status(200).send("Product does not exist");
+      res.status(404).send("Product does not exist");
     } else {
       res.status(200).send(pdt);
     }
@@ -197,7 +197,7 @@ exports.insertPageFaq = async (req, res) => {
         }
       }
       if (f === 0) {
-        res.status(400).send("Requested subsection not found");
+        res.status(404).send("Requested subsection not found");
       }
     }
   });
@@ -308,7 +308,7 @@ products.findOne({product_id:req.params.id},(err,pdt)=>{
 						if (error) {
 						  res.send(error);
 						} else {
-						  res.status(200).send("FAQ-Answer pair updated successfully!");
+						  res.status(201).send("FAQ-Answer pair updated successfully!");
 						}
 					  }
 					);
@@ -355,7 +355,7 @@ exports.deletePageFaq = async (req, res) => {
                     );
                 } else {
                   res
-                    .status(201)
+                    .status(200)
                     .send("Question-answer pair deleted successfully!");
                 }
               })

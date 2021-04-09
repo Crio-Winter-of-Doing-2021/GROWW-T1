@@ -21,7 +21,7 @@ app.post('/registerUser',auth_router)
 app.use('/',page_router)
 
 app.get('/', (_, res) => {
-    res.send('Hello from the profile backend!')
+    res.status(200).send('Hello from the profile backend!')
 })
 app.listen(process.env.PORT, () =>
   console.log(`Example app listening on port ${process.env.PORT}!`),
