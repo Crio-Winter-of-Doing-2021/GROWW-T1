@@ -8,7 +8,7 @@ function BotAnswer(props) {
   const { steps } = props;
   
   useEffect(() => {
-    fetch("http://localhost:8000/faq_steps", {
+    fetch("https://contextual-chatbot.herokuapp.com/faq_steps", {
       // Adding method type
       method: "POST",
 

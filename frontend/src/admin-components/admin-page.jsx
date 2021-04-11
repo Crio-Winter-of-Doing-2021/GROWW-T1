@@ -135,7 +135,7 @@ function AdminPage(props) {
   const addQuestionToServer = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/pages/" + state.page, {
+      .post("https://groww-backend.herokuapp.com/pages/" + state.page, {
         subsection: state.type,
         question: state.question,
         answer: state.answer,
@@ -154,7 +154,7 @@ function AdminPage(props) {
   const editQuestion = (e) => {
     e.preventDefault();
     axios
-      .patch("http://localhost:8080/pages/" + state.page, {
+      .patch("https://groww-backend.herokuapp.com/pages/" + state.page, {
         subsection: state.type,
         id: state.id,
         newquestion: state.newquestion,
@@ -174,7 +174,7 @@ function AdminPage(props) {
   const deleteQuestion = (e) => {
     e.preventDefault();
     axios
-      .delete("http://localhost:8080/pages/" + state.page, {
+      .delete("https://groww-backend.herokuapp.com/pages/" + state.page, {
         data: {
           subsection: state.type,
           id: state.id,

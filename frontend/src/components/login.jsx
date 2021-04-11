@@ -29,7 +29,7 @@ function Login(props) {
         status: "logging in",
       };
       axios
-        .post("http://localhost:8080/loggingUser", payload)
+        .post("https://groww-backend.herokuapp.com/loggingUser", payload)
         .then(function(response) {
           if (response.status === 200) {
             setLogin(<Alert variant="success">Login successfull</Alert>);

@@ -37,7 +37,7 @@ function Order(props) {
   }, []);
   const stepProcess = (item) => {
     setSteps(
-      "http://localhost:8000/orders/" + auth.user() + "/" + item.order_id
+      "https://contextual-chatbot.herokuapp.com/orders/" + auth.user() + "/" + item.order_id
     );
     setKey(item.order_id);
   };

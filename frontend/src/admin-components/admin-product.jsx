@@ -126,7 +126,7 @@ function AdminProduct(props) {
   const addQuestionToServer = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/products/" + state.id, {
+      .post("https://groww-backend.herokuapp.com/products/" + state.id, {
         question: state.question,
         answer: state.answer,
       })
@@ -144,7 +144,7 @@ function AdminProduct(props) {
   const editQuestion = (e) => {
     e.preventDefault();
     axios
-      .patch("http://localhost:8080/products/" + state.id, {
+      .patch("https://groww-backend.herokuapp.com/products/" + state.id, {
         id: state.sr,
         newquestion: state.newquestion,
         newanswer: state.newanswer,
@@ -163,7 +163,7 @@ function AdminProduct(props) {
   const deleteQuestion = (e) => {
     e.preventDefault();
     axios
-      .delete("http://localhost:8080/products/" + state.id, {
+      .delete("https://groww-backend.herokuapp.com/products/" + state.id, {
         data: {
           id: state.sr,
         },
