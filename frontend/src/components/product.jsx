@@ -39,7 +39,7 @@ function Products(props) {
   const sendDetailsToServer = () => {
     if (auth.isAuthenticated() && auth.kyc()==="done") {
       axios
-        .post("http://localhost:8080/orders/" + auth.user(), {
+        .post("https://groww-backend.herokuapp.com/orders/" + auth.user(), {
           productName: items.product_name,
           units: count,
         })
