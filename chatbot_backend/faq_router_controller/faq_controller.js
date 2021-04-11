@@ -33,7 +33,11 @@ exports.getPageFaq = async (req, res) => {
           options: [
             { value: 1, label: "No", trigger: "End" },
             { value: 2, label: "Yes", trigger: "Greet" },
-            { value:3, label:"I'd like to type my question",trigger:"botQues"}
+            {
+              value: 3,
+              label: "I'd like to type my question",
+              trigger: "botQues",
+            },
           ],
         },
         {
@@ -144,7 +148,11 @@ exports.getPdtFaq = async (req, res) => {
           options: [
             { value: 1, label: "No", trigger: "End" },
             { value: 2, label: "Yes", trigger: "Greet" },
-            { value:3, label:"I'd like to type my question",trigger:"botQues"}
+            {
+              value: 3,
+              label: "I'd like to type my question",
+              trigger: "botQues",
+            },
           ],
         },
         {
@@ -241,8 +249,11 @@ exports.getSelectedOrderFaq = async (req, res) => {
                       options: [
                         { value: 1, label: "No", trigger: "End" },
                         { value: 2, label: "Yes", trigger: "Greet" },
-                        { value:3, label:"I'd like to type my question",trigger:"botQues"}
-                        
+                        {
+                          value: 3,
+                          label: "I'd like to type my question",
+                          trigger: "botQues",
+                        },
                       ],
                     },
                     {
@@ -313,70 +324,66 @@ exports.getSelectedOrderFaq = async (req, res) => {
   });
 };
 
-exports.searchFaq = async(req,res) =>{
-let compare=[],result=[];
-await products.find({},(err,data)=>{
-if(err)
-	{
-	res.status(404).send(err);
-	}
-	else if(!data.length)
-	{
-		res.status(404).send("Question was not found!");
-	}
-	else
-	{
-                for(let i=0;i<data.length;i++)
-                {
-                	let questions=data[i].questions,answers=data[i].answers;
-                	for(let j=0;j<questions.length;j++)
-                	{
-                		compare.push(questions[j]);
-                		result.push(answers[j]);
-                		}
-                }
-                pages.find({},(err,page) =>{
-                if(err)
-                {
-                	res.status(404).send(err);
-                }
-                else if(!page.length)
-                {
-       				res.status(404).send("Question was not found!");         	
-                }
-                else
-                {
-                	for(let i=0;i<page.length;i++)
-                	{
-                		let subsections=page[i].subsections;
-                		for(let j=0;j<subsections.length;j++)
-                		{
-                			let qs=subsections[j].questions,as=subsections[j].answers;
-                			for(let k=0;k<qs.length;k++)
-                			{
-                				compare.push(qs[k]);
-                				result.push(as[k]);
-                			}
-                		}
-                	}
-                	compare.push("How do I get my full kyc done");
-                	compare.push("I don't have a pan card. Can I still invest?");
-                	compare.push("Do you charge for processing kyc?");
-                	result.push("You can get your full KYC done by uploading the required documents. Your full KYC will be done along with your first investment. Tap on 'Upload Docs'.");
-                	result.push("You cannot invest without a PAN card as per SEBI rules. Please get your PAN card made to start investing.");
-                	result.push("No. We do not charge anything for processing your KYC. We do it for free along with your first investment.");
-                	var matches = stringSimilarity.findBestMatch(req.body.question, compare);
-                	if(matches.bestMatch.rating>0.34)
-                	{
-                		res.send({answer:result.splice(matches.bestMatchIndex,1)});
-                	}
-                	else
-                	{
-                		res.send({answer:"Sorry we didn't get that. Try asking something more relevant that's related to our website."});
-                	}
-                }
-                });
-	}
-});
-
+exports.searchFaq = async (req, res) => {
+  let compare = [],
+    result = [];
+  await products.find({}, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else if (!data.length) {
+      res.status(404).send("Question was not found!");
+    } else {
+      for (let i = 0; i < data.length; i++) {
+        let questions = data[i].questions,
+          answers = data[i].answers;
+        for (let j = 0; j < questions.length; j++) {
+          compare.push(questions[j]);
+          result.push(answers[j]);
+        }
+      }
+      pages.find({}, (err, page) => {
+        if (err) {
+          res.status(404).send(err);
+        } else if (!page.length) {
+          res.status(404).send("Question was not found!");
+        } else {
+          for (let i = 0; i < page.length; i++) {
+            let subsections = page[i].subsections;
+            for (let j = 0; j < subsections.length; j++) {
+              let qs = subsections[j].questions,
+                as = subsections[j].answers;
+              for (let k = 0; k < qs.length; k++) {
+                compare.push(qs[k]);
+                result.push(as[k]);
+              }
+            }
+          }
+          compare.push("How do I get my full kyc done");
+          compare.push("I don't have a pan card. Can I still invest?");
+          compare.push("Do you charge for processing kyc?");
+          result.push(
+            "You can get your full KYC done by uploading the required documents. Your full KYC will be done along with your first investment. Tap on 'Upload Docs'."
+          );
+          result.push(
+            "You cannot invest without a PAN card as per SEBI rules. Please get your PAN card made to start investing."
+          );
+          result.push(
+            "No. We do not charge anything for processing your KYC. We do it for free along with your first investment."
+          );
+          var matches = stringSimilarity.findBestMatch(
+            req.body.question.toLowerCase(),
+            compare
+          );
+          if (matches.bestMatch.rating > 0.34) {
+            res.send({ answer: result.splice(matches.bestMatchIndex, 1) });
+          } else {
+            res.send({
+              answer:
+                "Sorry we didn't get that. Try asking something more relevant that's related to our website.",
+            });
+          }
+        }
+      });
+    }
+  });
 };
